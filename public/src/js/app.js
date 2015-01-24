@@ -1,14 +1,36 @@
 (function(){
   var app = angular.module('memoreez', ["services", "firebase"]);
 
+  app.controller('MemoriesCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
+    function($scope, eventsFactory, guestFactory, memoriesFactory){
+      $scope.theMemories = memoriesFactory.getMemories($scope.memory);
+      $scope.theMemories.$loaded().then(function(){
+        console.log("ahh, the memories!",$scope.theMemories);
+      })
+
+      console.log("scope.memory",$scope.memory);
+
+      $scope.resolveMemories = function(eventId){
+        console.log("eId", eventId);
+        memoriesFactory.getMemories(eventId);
+      }
+  }])
+
+
   app.controller('EventsCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
-                                function($scope, eventsFactory, guestFactory, memoriesFactory){
+    function($scope, eventsFactory, guestFactory, memoriesFactory){
+
+    $scope.openSpecific = function(obj){
+      console.log(obj);
+      console.log(obj.item.$id);
+    }
+
     $scope.list = eventsFactory.getEvents();
     // get a specific event
     //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
     //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
     //console.log();
-
+    console.log($scope.list);
 
     var eID = '-JgRnUudgkBhCQ8q-k8W', gID = '-JgRp0GYPchfJnjtFpTD';
     var x = guestFactory.getGuests(eID);
@@ -24,12 +46,12 @@
       }
     });
 
-    
+
     $scope.uploadFile = function(element) {
         $scope.theFile =  element.files[0];
         //scope.progressVisible = false
         console.log('file is here: ', $scope.theFile);
-        
+
         var reader = new FileReader();
 
         reader.onload = function(readerEvt) {
@@ -40,7 +62,7 @@
         };
 
         reader.readAsBinaryString($scope.theFile);
- 
+
     };
 
     //
@@ -88,6 +110,15 @@
 
 
   }]);
+  app.directive('myMemories', function(){
+    return{
+      restrict: 'E',
+      scope:{
+        memory: "=info"
+      },
+      templateUrl: 'src/templates/my-memories.html'
+    }
+  });
 
   app.directive('myAttendee', function(){
     return{

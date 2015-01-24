@@ -1,0 +1,8 @@
+<div ng-controller="MemoriesCtrl">
+  {{memory}}
+  <div ng-repeat="things in theMemories">
+    {{things.blobFile}}
+    <hr>
+    <img src="{{things.blobFile}}"></img>
+  </div>
+</div>

@@ -1,3 +1,7 @@
 <div ng-controller="EventsCtrl">
-  <li ng-repeat="item in list">{{ item|json }}</li>
+  <li  ng-repeat="item in list"  ng-click="openSpecific(this)">
+    {{ item|json }}
+    <my-memories info="this.item.$id"></my-memories>
+  </li>
+
 </div>
