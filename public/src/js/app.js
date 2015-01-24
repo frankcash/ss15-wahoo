@@ -1,7 +1,8 @@
 (function(){
-  var app = angular.module('memoreez', ["services", "firebase"]);
+  var app = angular.module('memoreez', ["services", "firebase", "ng-transloadit"]);
 
-  app.controller('EventsCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory', function($scope, eventsFactory, guestFactory, memoriesFactory){
+  app.controller('EventsCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory', 'Transloadit', 
+                                function($scope, eventsFactory, guestFactory, memoriesFactory, Transloadit){
     $scope.list = eventsFactory.getEvents();
     // get a specific event
     //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
@@ -13,7 +14,45 @@
 
     x.$loaded().then(function(){
       console.log('Guest has ' + x.length);
-    })
+    });
+    
+    $scope.uploadFile = function() {
+      console.log('got it:', $scope.myFile, $scope.mytext);
+      return;
+      Transloadit.upload(file, {
+        params: {
+          auth: {
+            key: '8283d3f0a35611e4b3e7896594f31cf8'
+          },
+  
+          template_id: 'my-template-id'
+        },
+  
+        signature: function(callback) {
+          // ideally you would be generating this on the fly somewhere
+          callback('here-is-my-signature');
+        },
+  
+        progress: function(loaded, total) {
+          console.log(loaded + 'bytes loaded');
+          console.log(total + ' bytes total');
+        },
+  
+        processing: function() {
+          console.log('done uploading, started processing');
+        },
+  
+        uploaded: function(assemblyJson) {
+          console.log(assemblyJson);
+        },
+  
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    };
+    
+    
     memoriesFactory.addMemory(eID, gID,'blobUrl','image','this is my awesome', false);
     var m = memoriesFactory.getMemories(eID);
         m.$loaded().then(function(){
