@@ -13,6 +13,6 @@ angular.module('app', [])
     return{
       restrict: 'E',
       scope: true, // uses prototypical inheritence
-      templateUrl: 'public/src/templates/my-attendee.html'
+      templateUrl: 'src/templates/my-attendee.html'
     }
   })
