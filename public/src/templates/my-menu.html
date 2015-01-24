@@ -14,9 +14,13 @@
     <div ng-show="view.isSet(3)">
     </div>
     <div ng-show="view.isSet(4)">
-      <input type="text" ng-model="eventName">
-      <input type="text" ng-model="orgName">
-      <input type="text" ng-model="orgEmail">
-      <input type="button" ng-click="submitEvent()">
+      <create-event></create-event>
+      <!-- <input type="text" ng-model="eventName">
+      <input type="button" ng-click="showFields = !showFields" ng-init="showFields=false" ng-init="showAlert=false">
+      <input ng-show="showFields" type="text" ng-model="orgName">
+      <input ng-show="showFields" type="text" ng-model="orgEmail">
+      <input ng-show="showFields" type="button" ng-click="submitEvent()">
+      <div ng-show="showAlert" class="alert-modal">oop</div> -->
+
     </div>
 </div>

@@ -1,3 +1,10 @@
 li.active{
   background-color:blue;
 }
+.alert-modal{
+  background-color:yellow;
+  position:absolute;
+  z-index:10;
+  width:50%;
+  height:50%;
+}
