@@ -1,8 +1,8 @@
 (function(){
   var app = angular.module('memoreez', ["services", "firebase"]);
 
-  app.controller('EventsCtrl', ['$scope', 'eventFactory', 'guestFactory', function($scope, eventFactory, guestFactory){
-    $scope.list = eventFactory.getEvents();
+  app.controller('EventsCtrl', ['$scope', 'eventsFactory', 'guestFactory', function($scope, eventsFactory, guestFactory){
+    $scope.list = eventsFactory.getEvents();
     // get a specific event
     //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
     //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
@@ -15,7 +15,7 @@
     }) 
   }]);
 
-  app.controller('IndexCtrl', ['$scope', 'eventFactory',  function($scope, eventFactory){
+  app.controller('IndexCtrl', ['$scope', 'eventsFactory',  function($scope, eventsFactory){
 
     /**
     *@summary will use ng-click to submit form, gets info from ng-models
@@ -25,7 +25,7 @@
     */
     $scope.submitEvent = function(){
       console.log('----', eventFactory);
-      eventFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
+      eventsFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
 
       //console.log("event name:", $scope.eventName);
       //console.log("organizer's name:", $scope.orgName);

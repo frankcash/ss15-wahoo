@@ -1,5 +1,5 @@
 angular.module('services', [])
-  .factory('eventFactory', ["$firebase", function ($firebase) {
+  .factory('eventsFactory', ["$firebase", function ($firebase) {
         var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/events');
 
         return {
@@ -10,7 +10,7 @@ angular.module('services', [])
                 var e = {eventName: eName, orgName: oName, OrgEmail:oEmail };
                 $firebase(fr).$asArray().$add(e);
             },
-            getEvent: function(id) {
+            getEvent: function getEvent(id){
                 return $firebase(fr.child(id)).$asObject();
             },
             delEvent: function(id) {
