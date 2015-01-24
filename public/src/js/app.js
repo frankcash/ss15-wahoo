@@ -24,11 +24,21 @@
       }
     });
 
+    $scope.hasMedia= function() {
+      return (window.navigator.getUserMedia || window.navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia);
+      //return false;
+    };
     
     $scope.uploadFile = function(element) {
+      console.log('bbbbb',element.files,arguments );
+      var fd = new FormData();
+        //Take the first selected file
+        fd.append("file", element.files[0]);
+        console.log('ccccc',fd );
+        
         $scope.theFile =  element.files[0];
         //scope.progressVisible = false
-        console.log('file is here: ', $scope.theFile);
+        console.log('file is here2: ', $scope.theFile);
         
         var reader = new FileReader();
 
