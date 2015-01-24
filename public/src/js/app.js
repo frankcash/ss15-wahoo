@@ -4,8 +4,8 @@
   app.controller('EventsCtrl', ['$scope', 'eventFactory', 'guestFactory', function($scope, eventFactory, guestFactory){
     $scope.list = eventFactory.getEvents();
     // get a specific event
-    console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
-    eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
+    //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
+    //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
     //console.log(guestFactory.addGuest('-JgPDtrYrbLaMcZ61JkH', 'me', 'me@me.com', '111', '1 main', 'msg', ''));
   }]);
 
@@ -21,10 +21,10 @@
       console.log('----', eventFactory);
       eventFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
 
-      console.log("event name:", $scope.eventName);
-      console.log("organizer's name:", $scope.orgName);
-      console.log("organizer's email:", $scope.orgEmail);
-      console.log(eventFactory.getEvents());
+      //console.log("event name:", $scope.eventName);
+      //console.log("organizer's name:", $scope.orgName);
+      //console.log("organizer's email:", $scope.orgEmail);
+      //console.log(eventFactory.getEvents());
       
     }
 
