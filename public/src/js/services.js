@@ -17,6 +17,16 @@ angular.module('services', [])
                 fr.child(id).remove();
             }
         };
+    }]).factory('memoriesFactory', ["$firebase", function($firebase){
+        var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/events');
+        
+        return {
+            addMemory: function(eventId, guestId, blobUrl, blobType, msg) {
+                var m = {"guestId": guestId, timestamp: (new Date()).getTime(), message: msg, "type": blobType };
+                // TODO transloadit to something 
+                $firebase(fr.child(eventId).child('memories')).$asArray().$add(m);   
+            }
+        }
     }])
     .factory('guestFactory', ["$firebase", function ($firebase) {
       var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/events');

@@ -1,18 +1,20 @@
 (function(){
   var app = angular.module('memoreez', ["services", "firebase"]);
 
-  app.controller('EventsCtrl', ['$scope', 'eventsFactory', 'guestFactory', function($scope, eventsFactory, guestFactory){
+  app.controller('EventsCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory', function($scope, eventsFactory, guestFactory, memoriesFactory){
     $scope.list = eventsFactory.getEvents();
     // get a specific event
     //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
     //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
     //console.log(guestFactory.addGuest('-JgPDtrYrbLaMcZ61JkH', 'me', 'me@me.com', '111', '1 main', 'msg', ''));
   
-    var x = guestFactory.getGuests('-JgPDtrYrbLaMcZ61JkH');
+    var eID = '-JgPDtrYrbLaMcZ61JkH', gID = '-JgPVp7bxEDthabA2sk4';
+    var x = guestFactory.getGuests(eID);
 
     x.$loaded().then(function(){
       console.log('Guest has ' + x.length);
-    }) 
+    })
+    memoriesFactory.addMemory(eID, gID,'blobUrl','image','this is my awesome');
   }]);
 
   app.controller('IndexCtrl', ['$scope', 'eventsFactory',  function($scope, eventsFactory){
