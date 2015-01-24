@@ -61,6 +61,9 @@
   }]);
 
   app.controller('IndexCtrl', ['$scope', 'eventsFactory',  function($scope, eventsFactory){
+    /**
+    *@summary allows flow control of `tab`/`menu`
+    */
     this.view = 1;
 
     this.isSet = function(checkTab) {
@@ -93,23 +96,6 @@
 
     }
 
-
-  }]);
-
-
-
-  app.controller('AttendeesCtrl', ['$scope', function($scope){
-    $scope.naomi = {
-      name: 'Naomi',
-      address: '1600 Amphiteather'
-    }
-
-    $scope.attendee = [];
-    $scope.attendee.push($scope.naomi);
-    $scope.attendee.push({name: 'Frank', address:'Foo123'})
-
-
-    $scope.event=null;
 
   }]);
 
