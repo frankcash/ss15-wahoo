@@ -1,6 +1,7 @@
 (function(){
   var app = angular.module('memoreez', ["services", "firebase"]);
 
+<<<<<<< HEAD
   app.controller('EventsCtrl', ['$scope', 'eventsFactory', 'guestFactory', function($scope, eventsFactory, guestFactory){
     $scope.list = eventsFactory.getEvents();
     // get a specific event
@@ -13,6 +14,19 @@
     x.$loaded().then(function(){
       console.log('Guest has ' + x.length);
     }) 
+=======
+  app.controller('SpecificEventCtrl', ['$scope', 'eventFactory', 'guestFactory', function($scope, eventFactory, guestFactory){
+    $scope.thisEvent = eventFactory.getEvent($scope.eventId);
+    $scope.guests = guestFactory.getGuests($scope.eventId);
+    console.log($scope.thisEvent);
+  }])
+
+  app.controller('EventsCtrl', ['$scope', 'eventFactory', function($scope, eventFactory){
+    $scope.list = eventFactory.getEvents();
+    // get a specific event
+    console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH') );
+    eventFactory.delEvent('-JgPGMeQZP4hX567XW59');
+>>>>>>> 2ebe6bf8c1ee9491154e5272f208d810d0830c6c
   }]);
 
   app.controller('IndexCtrl', ['$scope', 'eventsFactory',  function($scope, eventsFactory){
@@ -27,32 +41,32 @@
       console.log('----', eventFactory);
       eventsFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
 
-      //console.log("event name:", $scope.eventName);
-      //console.log("organizer's name:", $scope.orgName);
-      //console.log("organizer's email:", $scope.orgEmail);
-      //console.log(eventFactory.getEvents());
-      
+      console.log("event name:", $scope.eventName);
+      console.log("organizer's name:", $scope.orgName);
+      console.log("organizer's email:", $scope.orgEmail);
+
     }
 
 
   }]);
 
-
-
-  app.controller('AttendeesCtrl', ['$scope', function($scope){
-    $scope.naomi = {
-      name: 'Naomi',
-      address: '1600 Amphiteather'
+  // TODO: create directive for showing specific user's information
+  app.directive('allGuests', function(){
+    return{
+      restrict: 'E',
+      scope: true,
+      templateUrl : 'src/templates/all-guests.html'
     }
-
-    $scope.attendee = [];
-    $scope.attendee.push($scope.naomi);
-    $scope.attendee.push({name: 'Frank', address:'Foo123'})
-
-
-    $scope.event=null;
-
-  }]);
+  })
+  app.directive('specificEvent', function(){
+    return{
+      restrict: 'E',
+      scope: {
+        eventId : '=info' // allows passing of eventId
+      },
+      templateUrl: 'src/templates/specific-event.html'
+    }
+  });
 
   app.directive('myAttendee', function(){
     return{
