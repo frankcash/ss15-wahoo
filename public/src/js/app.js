@@ -29,6 +29,10 @@
       //return false;
     };
     
+    $scope.uploadPic = function(thePic){
+      memoriesFactory.addMemory(eID, gID, thePic,'image','this is my awesome 2', false);
+    };
+    
     $scope.uploadFile = function(element) {
       console.log('bbbbb',element.files,arguments );
       var fd = new FormData();
@@ -44,8 +48,10 @@
 
         reader.onload = function(readerEvt) {
             var binaryString = readerEvt.target.result;
-            $scope.blobFile = btoa(binaryString);
+            $scope.blobFile = "data:"+ $scope.theFile.type + ";base64,"+ btoa(binaryString);
+            document.getElementById('myimg').src = $scope.blobFile;
             //console.log($scope.blobFile);
+            
             memoriesFactory.addMemory(eID, gID, $scope.blobFile,'image','this is my awesome', false);
         };
 
