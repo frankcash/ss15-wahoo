@@ -1,8 +1,8 @@
 (function(){
-  var app = angular.module('memoreez', ["services", "firebase", "ng-transloadit"]);
+  var app = angular.module('memoreez', ["services", "firebase"]);
 
-  app.controller('EventsCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory', 'Transloadit', 
-                                function($scope, eventsFactory, guestFactory, memoriesFactory, Transloadit){
+  app.controller('EventsCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
+                                function($scope, eventsFactory, guestFactory, memoriesFactory){
     $scope.list = eventsFactory.getEvents();
     // get a specific event
     //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
@@ -23,6 +23,7 @@
         });
       }
     });
+
     
     $scope.uploadFile = function(element) {
         $scope.theFile =  element.files[0];
@@ -50,6 +51,9 @@
   }]);
 
   app.controller('IndexCtrl', ['$scope', 'eventsFactory',  function($scope, eventsFactory){
+    /**
+    *@summary allows flow control of `tab`/`menu`
+    */
     this.view = 1;
 
     this.isSet = function(checkTab) {
@@ -69,32 +73,19 @@
     *@param orgEmail organizer's email
     */
     $scope.submitEvent = function(){
-      eventsFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
+      if($scope.eventName == undefined || $scope.orgName == undefined ||
+        $scope.orgEmail== undefined){
+        $scope.showAlert = true;
+        console.log("");
+      }else{
+        console.log($scope.eventName, $scope.orgName, $scope.orgEmail);
+        eventsFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
 
-      //console.log("event name:", $scope.eventName);
-      //console.log("organizer's name:", $scope.orgName);
-      //console.log("organizer's email:", $scope.orgEmail);
-      //console.log(eventFactory.getEvents());
+      }
+
 
     }
 
-
-  }]);
-
-
-
-  app.controller('AttendeesCtrl', ['$scope', function($scope){
-    $scope.naomi = {
-      name: 'Naomi',
-      address: '1600 Amphiteather'
-    }
-
-    $scope.attendee = [];
-    $scope.attendee.push($scope.naomi);
-    $scope.attendee.push({name: 'Frank', address:'Foo123'})
-
-
-    $scope.event=null;
 
   }]);
 
@@ -105,6 +96,13 @@
       templateUrl: 'src/templates/my-attendee.html'
     }
   });
+
+  app.directive('createEvent', function(){
+    return{
+      restrict: 'E',
+      templateUrl: 'src/templates/create-event.html'
+    }
+  })
 
   app.directive('allEvents', function(){
     return{
