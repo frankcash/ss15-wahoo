@@ -1,9 +1,11 @@
 (function(){
   var app = angular.module('memoreez', ["services", "firebase"]);
+
   app.controller('SpecificEventCtrl', ['$scope', 'eventFactory', function($scope, eventFactory){
-    $scope.thisEvent = eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH');
+    $scope.thisEvent = eventFactory.getEvent($scope.eventId);
     console.log($scope.thisEvent);
   }])
+
   app.controller('EventsCtrl', ['$scope', 'eventFactory', function($scope, eventFactory){
     $scope.list = eventFactory.getEvents();
     // get a specific event
@@ -32,28 +34,13 @@
 
   }]);
 
-
-
-  app.controller('AttendeesCtrl', ['$scope', function($scope){
-    $scope.naomi = {
-      name: 'Naomi',
-      address: '1600 Amphiteather'
-    }
-
-    $scope.attendee = [];
-    $scope.attendee.push($scope.naomi);
-    $scope.attendee.push({name: 'Frank', address:'Foo123'})
-
-
-    $scope.event=null;
-
-  }]);
+  // TODO: create directive for showing specific user's information
 
   app.directive('specificEvent', function(){
     return{
       restrict: 'E',
       scope: {
-        eventId : '=info'
+        eventId : '=info' // allows passing of eventId
       },
       templateUrl: 'src/templates/specific-event.html'
     }
