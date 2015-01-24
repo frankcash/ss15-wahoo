@@ -14,7 +14,11 @@
     x.$loaded().then(function(){
       console.log('Guest has ' + x.length);
     })
-    memoriesFactory.addMemory(eID, gID,'blobUrl','image','this is my awesome');
+    memoriesFactory.addMemory(eID, gID,'blobUrl','image','this is my awesome', false);
+    var m = memoriesFactory.getMemories(eID);
+        m.$loaded().then(function(){
+      console.log('Event has  ' + m.length + " memories");
+    })
   }]);
 
   app.controller('IndexCtrl', ['$scope', 'eventsFactory',  function($scope, eventsFactory){
