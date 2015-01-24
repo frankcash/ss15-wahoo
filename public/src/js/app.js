@@ -7,15 +7,26 @@
     //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
     //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
     //console.log(guestFactory.addGuest('-JgPDtrYrbLaMcZ61JkH', 'me', 'me@me.com', '111', '1 main', 'msg', ''));
-  
+
     var x = guestFactory.getGuests('-JgPDtrYrbLaMcZ61JkH');
 
     x.$loaded().then(function(){
       console.log('Guest has ' + x.length);
-    }) 
+    })
   }]);
 
   app.controller('IndexCtrl', ['$scope', 'eventsFactory',  function($scope, eventsFactory){
+    this.view = 1;
+
+    this.isSet = function(checkTab) {
+      return this.view === checkTab;
+    };
+
+    this.setView = function(setTab) {
+      this.view = setTab;
+    };
+
+
 
     /**
     *@summary will use ng-click to submit form, gets info from ng-models
@@ -30,7 +41,7 @@
       //console.log("organizer's name:", $scope.orgName);
       //console.log("organizer's email:", $scope.orgEmail);
       //console.log(eventFactory.getEvents());
-      
+
     }
 
 

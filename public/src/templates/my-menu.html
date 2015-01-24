@@ -1,9 +1,22 @@
-<div ng-controller="IndexCtrl">
+<div ng-controller="IndexCtrl as view">
     <ul>
-         <li>Home</li>
-         <li>Events</li>
-         <li>About</li>
-         <li>Create Event</li>
+         <li ng-class="{active:view.isSet(1)}"><a ng-click="view.setView(1)">Home</a></li>
+         <li ng-class="{active:view.isSet(2)}"><a ng-click="view.setView(2)">Events</a></li>
+         <li ng-class="{active:view.isSet(3)}"><a ng-click="view.setView(3)">About</a></li>
+         <li ng-class="{active:view.isSet(4)}"><a ng-click="view.setView(4)">Create Event</a></li>
     </ul>
-
+    <div ng-show="view.isSet(1)">
+      <h1>welcome to memoreez</h1>
+    </div>
+    <div ng-show="view.isSet(2)">
+      <all-events></all-events>
+    </div>
+    <div ng-show="view.isSet(3)">
+    </div>
+    <div ng-show="view.isSet(4)">
+      <input type="text" ng-model="eventName">
+      <input type="text" ng-model="orgName">
+      <input type="text" ng-model="orgEmail">
+      <input type="button" ng-click="submitEvent()">
+    </div>
 </div>
