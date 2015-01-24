@@ -5,6 +5,7 @@
     $scope.list = eventFactory.getEvents();
     // get a specific event
     console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH') );
+    eventFactory.delEvent('-JgPGMeQZP4hX567XW59');
   }]);
 
   app.controller('IndexCtrl', ['$scope', 'eventFactory',  function($scope, eventFactory){
