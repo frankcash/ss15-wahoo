@@ -1,4 +1,9 @@
 {
-   name: 'memoreez',
-   root: 'public'
+   "name": "memoreez",
+   "root": "./public",
+   "clean_urls": true,
+   "cache_controls": {},
+   "routes": {
+      "**": "index.html"
+   }
 }
