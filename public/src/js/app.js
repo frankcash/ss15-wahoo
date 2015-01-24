@@ -3,6 +3,8 @@
 
   app.controller('EventsCtrl', ['$scope', 'eventFactory', function($scope, eventFactory){
     $scope.list = eventFactory.getEvents();
+    // get a specific event
+    console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH') );
   }]);
 
   app.controller('IndexCtrl', ['$scope', 'eventFactory',  function($scope, eventFactory){
@@ -21,6 +23,7 @@
       console.log("organizer's name:", $scope.orgName);
       console.log("organizer's email:", $scope.orgEmail);
       console.log(eventFactory.getEvents());
+      
     }
 
 

@@ -9,6 +9,10 @@ angular.module('services', [])
             addEvent: function(eName, oName, oEmail) {
                 var e = {eventName: eName, orgName: oName, OrgEmail:oEmail};
                 $firebase(fr).$asArray().$add(e);
+            },
+            getEvent: function(id) {
+                
+                return $firebase(fr.child(id)).$asObject();
             }
         };
     }])
