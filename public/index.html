@@ -10,7 +10,7 @@
   <body ng-app="app">
     <div ng-controller="Attendees">
       <div ng-repeat="person in attendee">
-        <my-attendee></my-attendee>
+        {{person.name}} {{person.address}}
       </div>
     </div>
 

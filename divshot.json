@@ -1,9 +1,6 @@
 {
    "name": "ss15-wahoo",
-   "root": "./public",
-   "clean_urls": true,
-   "cache_controls": {},
-   "routes": {
-      "**": "index.html"
-   }
+   "root": "./public/",
+   "clean_urls": true
+   
 }
