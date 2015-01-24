@@ -1,7 +1,7 @@
 angular.module('ng-transloadit', []).factory('Transloadit', ['$http', '$rootScope', '$timeout', function($http, $rootScope, $timeout) {
   $scope = $rootScope.$new();
 
-  var TRANSLOADIT_API = 'https://api2-eu-west-1.transloadit.com/assemblies';
+  var TRANSLOADIT_API = 'https://api2.transloadit.com/assemblies';
 
   function getExpiryDate() {
     var date = new Date();

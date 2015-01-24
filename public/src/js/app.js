@@ -7,53 +7,42 @@
     // get a specific event
     //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
     //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
-    //console.log(guestFactory.addGuest('-JgPDtrYrbLaMcZ61JkH', 'me', 'me@me.com', '111', '1 main', 'msg', ''));
+    //console.log();
 
 
-    var eID = '-JgPDtrYrbLaMcZ61JkH', gID = '-JgPVp7bxEDthabA2sk4';
+    var eID = '-JgRnUudgkBhCQ8q-k8W', gID = '-JgRp0GYPchfJnjtFpTD';
     var x = guestFactory.getGuests(eID);
+
 
     x.$loaded().then(function(){
       console.log('Guest has ' + x.length);
+      if (x.length == 0 ) {
+        guestFactory.addGuest(eID, 'me', 'me@me.com', '111', '1 main', 'msg', '').then(function(data) {
+          console.log('.... data: ', data, data.key());
+          gID = data.key();
+        });
+      }
     });
     
-    $scope.uploadFile = function() {
-      console.log('got it:', $scope.myFile, $scope.mytext);
-      return;
-      Transloadit.upload(file, {
-        params: {
-          auth: {
-            key: '8283d3f0a35611e4b3e7896594f31cf8'
-          },
-  
-          template_id: 'my-template-id'
-        },
-  
-        signature: function(callback) {
-          // ideally you would be generating this on the fly somewhere
-          callback('here-is-my-signature');
-        },
-  
-        progress: function(loaded, total) {
-          console.log(loaded + 'bytes loaded');
-          console.log(total + ' bytes total');
-        },
-  
-        processing: function() {
-          console.log('done uploading, started processing');
-        },
-  
-        uploaded: function(assemblyJson) {
-          console.log(assemblyJson);
-        },
-  
-        error: function(error) {
-          console.log(error);
-        }
-      });
+    $scope.uploadFile = function(element) {
+        $scope.theFile =  element.files[0];
+        //scope.progressVisible = false
+        console.log('file is here: ', $scope.theFile);
+        
+        var reader = new FileReader();
+
+        reader.onload = function(readerEvt) {
+            var binaryString = readerEvt.target.result;
+            $scope.blobFile = btoa(binaryString);
+            //console.log($scope.blobFile);
+            memoriesFactory.addMemory(eID, gID, $scope.blobFile,'image','this is my awesome', false);
+        };
+
+        reader.readAsBinaryString($scope.theFile);
+ 
     };
 
-    memoriesFactory.addMemory(eID, gID,'blobUrl','image','this is my awesome', false);
+    //
     var m = memoriesFactory.getMemories(eID);
         m.$loaded().then(function(){
       console.log('Event has  ' + m.length + " memories");

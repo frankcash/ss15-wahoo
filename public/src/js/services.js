@@ -21,10 +21,10 @@ angular.module('services', [])
         var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/events');
         
         return {
-            addMemory: function(eventId, guestId, blobUrl, blobType, msg, isPrivate) {
+            addMemory: function(eventId, guestId, theblob, blobType, msg, isPrivate) {
                 var m = {"guestId": guestId, timestamp: (new Date()).getTime(), message: msg, "type": blobType, "private": isPrivate };
                 // TODO transloadit to something 
-                m.blobUrl = 'http://graytaxidermy.com/Gallery/fishmounts/fishmount-images/wahoo-mount-large.jpg';
+                m.blobFile = theblob;
                 $firebase(fr.child(eventId).child('memories')).$asArray().$add(m);   
             },
             getMemories: function(eventId){
@@ -45,7 +45,8 @@ angular.module('services', [])
         addGuest: function(id, guestName, guestEmail, guestPhone, guestAddress, guestMessage, guestImage) {
              // id is the event ID
           var e = {name: guestName, email: guestEmail, phone:guestPhone, address: guestAddress, message: guestMessage, image: guestImage};
-          $firebase(fr.child(id).child('guests')).$asArray().$add(e);
+          return $firebase(fr.child(id).child('guests')).$asArray().$add(e);
+          //console.log(g);
         },
         delGuest: function(id, guestId) {
              // id is the event ID
