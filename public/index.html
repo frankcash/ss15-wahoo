@@ -7,11 +7,18 @@
     <script src="./src/js/app.js"></script>
 
   </head>
-  <body ng-app="app">
-    <div ng-controller="Attendees">
+  <body ng-app="memoreez">
+    <div ng-controller="AttendeesCtrl">
       <div ng-repeat="person in attendee">
         <my-attendee></my-attendee>
       </div>
+    </div>
+
+    <div ng-controller="IndexCtrl">
+      <input type="text" ng-model="eventName">
+      <input type="text" ng-model="orgName">
+      <input type="text" ng-model="orgEmail">
+      <input type="button" ng-click="submitEvent()">
     </div>
 
   </body>
