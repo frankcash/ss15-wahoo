@@ -4,7 +4,7 @@
   app.controller('EventsCtrl', ['$scope', 'eventFactory', 'guestFactory', function($scope, eventFactory, guestFactory){
     $scope.list = eventFactory.getEvents();
     // get a specific event
-    console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'), eventFactory.getGuestCount('-JgPDtrYrbLaMcZ61JkH').length );
+    console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
     eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
     //console.log(guestFactory.addGuest('-JgPDtrYrbLaMcZ61JkH', 'me', 'me@me.com', '111', '1 main', 'msg', ''));
   }]);
