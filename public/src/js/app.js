@@ -7,6 +7,12 @@
     //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
     //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
     //console.log(guestFactory.addGuest('-JgPDtrYrbLaMcZ61JkH', 'me', 'me@me.com', '111', '1 main', 'msg', ''));
+  
+    var x = guestFactory.getGuests('-JgPDtrYrbLaMcZ61JkH');
+
+    x.$loaded().then(function(){
+      console.log('Guest has ' + x.length);
+    }) 
   }]);
 
   app.controller('IndexCtrl', ['$scope', 'eventFactory',  function($scope, eventFactory){
@@ -64,4 +70,11 @@
     }
   });
 
+    app.directive('myMenu', function(){
+    return{
+      restrict: 'E',
+      scope: true,
+      templateUrl: 'src/templates/my-menu.html'
+    }
+  });
 })();
