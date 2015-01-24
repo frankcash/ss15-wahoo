@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module('memoreez', []);
+  var app = angular.module('memoreez', ["services", "firebase"]);
 
   app.controller('IndexCtrl', ['$scope', function($scope){
 
