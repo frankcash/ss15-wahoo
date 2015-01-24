@@ -7,7 +7,7 @@ angular.module('services', [])
                 return $firebase(fr).$asArray();
             },
             addEvent: function(eName, oName, oEmail) {
-                var e = {eventName: eName, orgName: oName, OrgEmail:oEmail};
+                var e = {eventName: eName, orgName: oName, OrgEmail:oEmail };
                 $firebase(fr).$asArray().$add(e);
             },
             getEvent: function(id) {
@@ -18,16 +18,27 @@ angular.module('services', [])
             }
         };
     }])
-    .factory('userFactory', ["$firebase", function ($firebase) {
+    .factory('guestFactory', ["$firebase", function ($firebase) {
       var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/events');
 
+      
       return {
-        getUsers: function() {
-          return $firebase(fr).$asArray();
+        getGuests: function(id) {
+            // id is the event ID 
+          return $firebase(fr.child(id).child('guests')).$asArray();
         },
-        addUser: function(guestName, guestEmail, guestPhone, guestAddress, guestMessage, guestImage) {
+        addGuest: function(id, guestName, guestEmail, guestPhone, guestAddress, guestMessage, guestImage) {
+             // id is the event ID 
           var e = {name: guestName, email: guestEmail, phone:guestPhone, address: guestAddress, message: guestMessage, image: guestImage};
-          fr.push(e);
-        }, 
+          $firebase(fr.child(id).child('guests')).$asArray().$add(e);
+        },
+        delGuest: function(id, guestId) {
+             // id is the event ID 
+            fr.child(id).child('guests').child(guestId).remove();
+        },
+        getGuest: function (id, guestId) {
+             // id is the event ID 
+            return $firebase(fr.child(id).child('guests').child(guestId)).$asObject();
+        }
       };
     }]);
