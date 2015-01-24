@@ -19,17 +19,18 @@ angular.module('services', [])
         };
     }])
     .factory('memoriesFactory', ["$firebase", function($firebase){
-        var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/events');
+        var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/memories');
 
         return {
             addMemory: function(eventId, guestId, theblob, blobType, msg, isPrivate) {
+                fr.child(eventId)
                 var m = {"guestId": guestId, timestamp: (new Date()).getTime(), message: msg, "type": blobType, "private": isPrivate };
                 // TODO transloadit to something
                 m.blobFile = theblob;
-                $firebase(fr.child(eventId).child('memories')).$asArray().$add(m);
+                $firebase(fr.child(eventId)).$asArray().$add(m);
             },
             getMemories: function(eventId){
-                return $firebase(fr.child(eventId).child('memories')).$asArray();
+                return $firebase(fr.child(eventId)).$asArray();
             }
 
         }

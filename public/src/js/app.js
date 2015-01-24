@@ -32,7 +32,7 @@
     //console.log();
     console.log($scope.list);
 
-    var eID = '-JgRnUudgkBhCQ8q-k8W', gID = '-JgRp0GYPchfJnjtFpTD';
+    var eID = '-JgS5MEyNLpmZ0zJRYxb', gID = '-JgRp0GYPchfJnjtFpTD';
     var x = guestFactory.getGuests(eID);
 
 
