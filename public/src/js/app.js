@@ -1,8 +1,21 @@
 (function(){
-  var app = angular.module('memoreez', ["services", "firebase"]);
+  var app = angular.module('memoreez', ["ngRoute", "services", "firebase"]);
 
+  app.config(['$routeProvider', function($routeProvider) {
+        $routeProvider.
+                when('/home', {templateUrl: 'src/templates/home.html',   controller: 'IndexCtrl'}).
+                when('/eventList', {templateUrl: 'src/templates/all-events.html',   controller: 'EventsCtrl'}).
+                when('/event/:itemId', {templateUrl: 'src/templates/specific-event.html'}).
+                when('/create', {templateUrl: 'src/templates/create-event.html',   controller: 'IndexCtrl'}).
+                when('/memory/:eventId/:guestId', {templateUrl: 'src/templates/my-memories.html',   controller: 'MemoriesCtrl'}).
+                when('/about', {templateUrl: 'src/templates/about.html',   controller: 'IndexCtrl'}).
+                
+                otherwise({redirectTo: '/home'});
+  }]);
+  
   app.controller('MemoriesCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
     function($scope, eventsFactory, guestFactory, memoriesFactory){
+      console.log('we are being fired');
       $scope.theMemories = memoriesFactory.getMemories($scope.memory);
       $scope.theMemories.$loaded().then(function(){
         console.log("ahh, the memories!",$scope.theMemories);
@@ -16,13 +29,22 @@
       }
   }])
 
+  app.controller('SpecificEventCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams',
+    function($scope, $location, eventsFactory, $route, $routeParams){
+      console.log('SpecificEventController');
+  }]);
 
-  app.controller('EventsCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
-    function($scope, eventsFactory, guestFactory, memoriesFactory){
+  app.controller('EventsCtrl', ['$scope', '$location','eventsFactory', 'guestFactory', 'memoriesFactory',
+    function($scope, $location, eventsFactory, guestFactory, memoriesFactory){
 
     $scope.openSpecific = function(obj){
       console.log(obj);
       console.log(obj.item.$id);
+    }
+    
+    $scope.goNext = function (hash) {
+      console.log('HASH: ', hash);
+      $location.path(hash);
     }
 
     $scope.list = eventsFactory.getEvents();
@@ -89,7 +111,9 @@
     })
   }]);
 
-  app.controller('IndexCtrl', ['$scope', 'eventsFactory',  function($scope, eventsFactory){
+  app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams',
+                               function($scope, $location, eventsFactory, $route, $routeParams){
+    console.log('ROUTE INFO:', $route, $routeParams);
     /**
     *@summary allows flow control of `tab`/`menu`
     */

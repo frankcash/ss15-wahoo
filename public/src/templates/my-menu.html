@@ -1,19 +1,9 @@
 <div ng-controller="IndexCtrl as view">
     <ul>
-         <li ng-class="{active:view.isSet(1)}"><a ng-click="view.setView(1)">Home</a></li>
-         <li ng-class="{active:view.isSet(2)}"><a ng-click="view.setView(2)">Events</a></li>
-         <li ng-class="{active:view.isSet(3)}"><a ng-click="view.setView(3)">About</a></li>
-         <li ng-class="{active:view.isSet(4)}"><a ng-click="view.setView(4)">Create Event</a></li>
+         <li><a href="#/home">Home</a></li>
+         <li><a href="#/eventList">Events</a></li>
+         <li><a href="#/about">About</a></li>
+         <li><a href="#/create">Create Event</a></li>
     </ul>
-    <div ng-show="view.isSet(1)">
-      <h1>welcome to memoreez</h1>
-    </div>
-    <div ng-show="view.isSet(2)">
-      <all-events></all-events>
-    </div>
-    <div ng-show="view.isSet(3)">
-    </div>
-    <div ng-show="view.isSet(4)">
-      <create-event></create-event>
-    </div>
+
 </div>
