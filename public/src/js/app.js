@@ -1,7 +1,7 @@
 (function(){
   var app = angular.module('memoreez', ["services", "firebase"]);
 
-  app.controller('IndexCtrl', ['$scope', 'fbFactory',  function($scope, fbFactory){
+  app.controller('IndexCtrl', ['$scope', 'eventFactory',  function($scope, eventFactory){
 
     /**
     *@summary will use ng-click to submit form, gets info from ng-models
@@ -10,9 +10,9 @@
     *@param orgEmail organizer's email
     */
     $scope.submitEvent = function(){
-      console.log('----', fbFactory);
-      fbFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
-      
+      console.log('----', eventFactory);
+      eventFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
+
       console.log("event name:", $scope.eventName);
       console.log("organizer's name:", $scope.orgName);
       console.log("organizer's email:", $scope.orgEmail);
