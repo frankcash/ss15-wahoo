@@ -29,6 +29,7 @@ angular.module('services', [])
             getMemories: function(eventId){
                 return $firebase(fr.child(eventId).child('memories')).$asArray();
             }
+            
         }
     }])
     .factory('guestFactory', ["$firebase", function ($firebase) {
