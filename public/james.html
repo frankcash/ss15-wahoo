@@ -1,0 +1,90 @@
+<html>
+
+  <head>
+    <title>memoreez</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-route.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.1.1/firebase.js"></script>
+
+    <script src="./src/js/angularfire.min.js"></script>
+    <script src="./src/js/app.js"></script>
+    <script src="./src/js/services.js"></script>
+    <script src="./src/js/ng-transloadit.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <!-- We include the Transloadit jQuery plugin here -->
+  <script src="https://assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>    
+        <script>
+          var videoObj = { "video": true };
+          
+            function takepic() {
+              console.log('aaaa');
+              if (myStream) {
+                console.log(myStream);
+                context.drawImage(video, 0, 0, 640, 480);
+                // "image/webp" works in Chrome.
+                // Other browsers will fall back to image/png.
+                //document.querySelector('img').src = canvas.toDataURL('image/webp');
+                angular.element(document.getElementById('theFile')).scope().uploadPic(canvas.toDataURL('image/webp'))
+                console.log(canvas.toDataURL('image/webp'));
+              }
+            }
+          
+          
+          
+          
+  var errBack = function(e) {
+    console.log('Reeeejected!', e);
+  };
+// Put video listeners into place
+	if(navigator.getUserMedia) { // Standard
+		navigator.getUserMedia(videoObj, function(stream) {
+			video.src = stream;
+			video.play();
+                        myStream = stream;
+		}, errBack);
+	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+		navigator.webkitGetUserMedia(videoObj, function(stream){
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+                        myStream = stream;
+		}, errBack);
+	}
+	else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+		navigator.mozGetUserMedia(videoObj, function(stream){
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+                        myStream = stream;
+		}, errBack);
+        };
+</script>
+
+  </head>
+  <body ng-app="memoreez">
+
+    <div ng-controller="EventsCtrl">
+      <img id="myimg" src=""></img>
+      <!-- change accept to video to take video -->
+      <input id="theFile" type="file" accept="image/*" file-model="myFile" onchange="angular.element(this).scope().uploadFile(this)">
+        
+        <!-- if no getUserMedia -->
+        <div ng-show="isActive" ng-init="isActive=hasMedia()">
+          <a href="#" onclick="javascript:takepic()"  >Take Pic</a>        
+          <br/>
+          
+         <video id="video" width="640" height="480" autoplay></video>
+         <canvas id="canvas" width="640" height="480"></canvas>
+           <script>
+             var video =  document.getElementById("video"),  canvas = document.getElementById("canvas"), context = canvas.getContext("2d")
+             var myStream = null;
+             
+           </script>
+    </div>
+
+    
+    
+    </div>
+  </body>
+</html>
+
+
