@@ -1,12 +1,14 @@
 (function(){
   var app = angular.module('memoreez', ["services", "firebase"]);
-
-  app.controller('EventsCtrl', ['$scope', 'eventFactory', 'guestFactory', function($scope, eventFactory, guestFactory){
+  app.controller('SpecificEventCtrl', ['$scope', 'eventFactory', function($scope, eventFactory){
+    $scope.thisEvent = eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH');
+    console.log($scope.thisEvent);
+  }])
+  app.controller('EventsCtrl', ['$scope', 'eventFactory', function($scope, eventFactory){
     $scope.list = eventFactory.getEvents();
     // get a specific event
-    //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
-    //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
-    //console.log(guestFactory.addGuest('-JgPDtrYrbLaMcZ61JkH', 'me', 'me@me.com', '111', '1 main', 'msg', ''));
+    console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH') );
+    eventFactory.delEvent('-JgPGMeQZP4hX567XW59');
   }]);
 
   app.controller('IndexCtrl', ['$scope', 'eventFactory',  function($scope, eventFactory){
@@ -21,11 +23,10 @@
       console.log('----', eventFactory);
       eventFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
 
-      //console.log("event name:", $scope.eventName);
-      //console.log("organizer's name:", $scope.orgName);
-      //console.log("organizer's email:", $scope.orgEmail);
-      //console.log(eventFactory.getEvents());
-      
+      console.log("event name:", $scope.eventName);
+      console.log("organizer's name:", $scope.orgName);
+      console.log("organizer's email:", $scope.orgEmail);
+
     }
 
 
@@ -47,6 +48,16 @@
     $scope.event=null;
 
   }]);
+
+  app.directive('specificEvent', function(){
+    return{
+      restrict: 'E',
+      scope: {
+        eventId : '=info'
+      },
+      templateUrl: 'src/templates/specific-event.html'
+    }
+  });
 
   app.directive('myAttendee', function(){
     return{
