@@ -15,7 +15,7 @@
     }) 
   }]);
 
-  app.controller('IndexCtrl', ['$scope', 'eventsFactory', 'eventFactory', function($scope, eventsFactory, eventFactory){
+  app.controller('IndexCtrl', ['$scope', 'eventsFactory',  function($scope, eventsFactory){
 
     /**
     *@summary will use ng-click to submit form, gets info from ng-models
@@ -24,7 +24,6 @@
     *@param orgEmail organizer's email
     */
     $scope.submitEvent = function(){
-      console.log('----', eventFactory);
       eventsFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
 
       //console.log("event name:", $scope.eventName);
