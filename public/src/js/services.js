@@ -25,6 +25,9 @@ angular.module('services', [])
                 var m = {"guestId": guestId, timestamp: (new Date()).getTime(), message: msg, "type": blobType };
                 // TODO transloadit to something 
                 $firebase(fr.child(eventId).child('memories')).$asArray().$add(m);   
+            },
+            getMemories: function(eventId){
+                return $firebase(fr.child(eventId).child('memories')).$asArray();
             }
         }
     }])
