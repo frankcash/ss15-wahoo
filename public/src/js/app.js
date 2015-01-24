@@ -1,8 +1,9 @@
 (function(){
   var app = angular.module('memoreez', ["services", "firebase"]);
 
-  app.controller('SpecificEventCtrl', ['$scope', 'eventFactory', function($scope, eventFactory){
+  app.controller('SpecificEventCtrl', ['$scope', 'eventFactory', 'guestFactory', function($scope, eventFactory, guestFactory){
     $scope.thisEvent = eventFactory.getEvent($scope.eventId);
+    $scope.guests = guestFactory.getGuests($scope.eventId);
     console.log($scope.thisEvent);
   }])
 
@@ -35,7 +36,13 @@
   }]);
 
   // TODO: create directive for showing specific user's information
-
+  app.directive('allGuests', function(){
+    return{
+      restrict: 'E',
+      scope: true,
+      templateUrl : 'src/templates/all-guests.html'
+    }
+  })
   app.directive('specificEvent', function(){
     return{
       restrict: 'E',

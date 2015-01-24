@@ -1,4 +1,6 @@
 <div ng-controller="SpecificEventCtrl">
   {{thisEvent.$id}} : {{thisEvent.eventName}}
-  <p ng-repeat = "people in thisEvent.guests"> {{people}} </p>
+  
+  <all-guests></all-guests>
+
 </div>
