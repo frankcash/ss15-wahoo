@@ -16,30 +16,35 @@
 
   app.controller('MemoriesCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
     function($scope, eventsFactory, guestFactory, memoriesFactory){
-      console.log('we are being fired');
+
       $scope.guestList = guestFactory.getGuests($scope.memory);
 
       $scope.theMemories = memoriesFactory.getMemories($scope.memory);
       $scope.theMemories.$loaded().then(function(data){
-        console.log("ahh, the memories!",$scope.theMemories, data);
-
+        // console.log("ahh, the memories!",$scope.theMemories, data);
       })
 
 
-      console.log("scope.memory",$scope.memory);
-
+      /**
+      *@summary gets all memories for an event
+      *@param eventId needs to be passed the event id
+      */
       $scope.resolveMemories = function(eventId){
-        console.log("eId", eventId);
         memoriesFactory.getMemories(eventId);
 
       }
 
+      /**
+      *@summary takes in guestId and returns the guest name
+      *@param guestId the guest's Id
+      *@param $scope.guestList firebase list of all guests
+      */
       $scope.resolveGuest = function(guestId){
         angular.forEach($scope.guestList, function(obj, key){
-          console.log(obj);
+          // console.log(obj);
           if(obj.$id===guestId){
-            console.log(obj.email);
-            result = (obj.email)
+            // console.log(obj.name);
+            result = (obj.name)
           }
         });
         return result;
@@ -101,11 +106,10 @@
 
         }
 
-
         return breturn;
       };
 
-      $scope.takepic =     function takepic() {
+      $scope.takepic = function takepic() {
         console.log('aaaa');
         if ($scope.myStream) {
           //console.log(myStream);
@@ -227,7 +231,7 @@
     })
   }]);
 
-  app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams','guestFactory', 
+  app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams','guestFactory',
                                function($scope, $location, eventsFactory, $route, $routeParams, guestFactory){
     console.log('ROUTE INFO:', $route, $routeParams);
     this.$route = $route;
@@ -244,13 +248,15 @@
       //document.getElementById("navbar1").style.display="block";
     }
     console.log("showHome", $scope.showHome);
-    
+
     //jes home page stuff
     !$scope.eventName && $routeParams.eventName && ($scope.eventName = $routeParams.eventName);
     !$scope.eventName && ($scope.eventName = 'Party');
-    
+
+    /**
+    *@summary will click and move to createEvent route with the event's name
+    */
     $scope.createEvent = function(){
-      console.log('-------', $scope.eventName)
       $location.path('/create/'+$scope.eventName);
     }
 
@@ -282,10 +288,10 @@
             var guestId = gData.key();
             $location.path('/share/'+eventId+'/'+guestId);
           });
-          
-          
+
+
         })
-        
+
       }
 
 
@@ -293,6 +299,7 @@
 
 
   }]);
+
   app.directive('myMemories', function(){
     return{
       restrict: 'E',
