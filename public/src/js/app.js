@@ -14,12 +14,16 @@
                 .otherwise({redirectTo: '/home'});
   }]);
 
-  app.controller('MemoriesCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
-    function($scope, eventsFactory, guestFactory, memoriesFactory){
+  app.controller('MemoriesCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory', '$route','$routeParams',
+    function($scope, eventsFactory, guestFactory, memoriesFactory, $route, $routeParams){
+      this.params = $routeParams;
+      $scope.thisEvent = this.params.eventId;
+      $scope.thisGuestId = this.params.guestId;
 
-      $scope.guestList = guestFactory.getGuests($scope.memory);
+      $scope.guestList = guestFactory.getGuests($scope.memory?$scope.memory:$scope.thisEvent );
 
-      $scope.theMemories = memoriesFactory.getMemories($scope.memory);
+      $scope.theMemories = memoriesFactory.getMemories($scope.memory?$scope.memory:$scope.thisEvent);
+
       $scope.theMemories.$loaded().then(function(data){
         // console.log("ahh, the memories!",$scope.theMemories, data);
       })
@@ -80,6 +84,21 @@
       $location.path('/event/'+$scope.thisEvent);
     };
 
+    $scope.shareCancel = function(){
+      //console.log('asdfsafasfsdaffasd');
+      $location.path('/memory/'+$scope.thisEvent + '/'+$scope.thisGuestId);
+    };
+     $scope.share = function(){
+      //console.log('share it NOW');
+      if ( $scope.thePic) {
+        memoriesFactory.addMemory($scope.thisEvent, $scope.thisGuestId, $scope.thePic,'image',$scope.msg ? $scope.msg : '', false);
+        $location.path('/memory/'+$scope.thisEvent + '/'+$scope.thisGuestId);
+      } else {
+        alert('Missing picture');
+      };
+
+    };
+
     $scope.checkIn = function(){
 
       if ($scope.name && $scope.email) {
@@ -136,12 +155,13 @@
         console.log('aaaa');
         if ($scope.myStream) {
           //console.log(myStream);
-          $scope.context.drawImage($scope.video, 0, 0, 640, 480);
+          $scope.context.drawImage($scope.video, 0, 0, 250, 250);
           // "image/webp" works in Chrome.
           // Other browsers will fall back to image/png.
           //document.querySelector('img').src = canvas.toDataURL('image/webp');
           //TODO jes fix this
-          memoriesFactory.addMemory($scope.thisEvent, $scope.thisGuestId, $scope.canvas.toDataURL('image/webp'),'image','this is my awesome', false);
+          $scope.thePic = $scope.canvas.toDataURL('image/webp')
+          //memoriesFactory.addMemory($scope.thisEvent, $scope.thisGuestId, $scope.canvas.toDataURL('image/webp'),'image','this is my awesome', false);
           //memoriesFactory.addMemory(eID, gID, thePic,'image','this is my awesome 2', false);
           //$scope.uploadPic(canvas.toDataURL('image/webp'))
           //console.log(canvas.toDataURL('image/webp'));
@@ -166,8 +186,8 @@
               $scope.blobFile = "data:"+ $scope.theFile.type + ";base64,"+ btoa(binaryString);
               document.getElementById('myimg').src = $scope.blobFile;
               //console.log($scope.blobFile);
-
-              memoriesFactory.addMemory($scope.thisEvent, $scope.thisGuestId, $scope.blobFile,'image','this is my awesome', false);
+              $scope.thePic = $scope.blobFile;
+              //memoriesFactory.addMemory($scope.thisEvent, $scope.thisGuestId, $scope.blobFile,'image','this is my awesome', false);
           };
 
           reader.readAsBinaryString($scope.theFile);

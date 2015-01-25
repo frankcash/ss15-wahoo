@@ -11,7 +11,7 @@
       <ul class="w-clearfix memory-list">
         <li class="memory-container" ng-repeat="things in theMemories">
           <div class="memory-timestamp">{{things.timestamp| date : 'shortTime' }}</div>
-          <img class="memory-media" height="100px" width="100px" ng-src="{{things.blobFile}}" alt="image-placeholder.svg">
+          <img class="memory-media" height="100px" width="100px" ng-src="{{things.blobFile}}" alt="image-placeholder.svg" title="{{things.message}}">
           <div class="memory-guest">{{resolveGuest(things.guestId)}} </div>
         </li>
       </ul>
