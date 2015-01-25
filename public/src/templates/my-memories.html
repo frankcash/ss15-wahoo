@@ -1,4 +1,5 @@
 <div ng-controller="MemoriesCtrl">
+<<<<<<< Updated upstream
   <div class="w-row memory-row" data-ix="memory-row-fade-in" ng-repeat="h in hours">
     <div class="w-col w-col-2 timeline-time">
       <div class="now">{{h.sHour | date : "h:mm"}}</div>
@@ -7,6 +8,9 @@
     </div>
     <div class="w-col w-col-10 timeline-events">
   <!--  -->
+=======
+<script type="text/javascript" src="/src/js/webpjs-0.0.2.min.js"></script>
+>>>>>>> Stashed changes
       <ul class="w-clearfix memory-list">
         <li class="memory-container" ng-repeat="things in h.memories">
           <div class="memory-timestamp">{{things.timestamp| date : 'shortTime' }}</div>
@@ -19,3 +23,13 @@
   </div>
 
 </div>
+
+<!-- see the tipped comment at bottom of index.html -->
+
+<script type="text/javascript">
+$(document).ready(function() {
+  Tipped.create('.memory-media');
+});
+</script>
+
+<!-- This is a test image for webp support. I've added webpjs to the js directory. <img src="/src/img/frank.webp"> -->
