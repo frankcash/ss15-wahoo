@@ -441,7 +441,7 @@ p {
   padding-top: 10px;
   font-family: proxima-nova, sans-serif;
   color: #5c8ed4;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 16px;
   text-align: center;
 }
@@ -637,6 +637,10 @@ p {
   font-family:'Varela Round', sans-serif;
   color: #6195d8;
   font-size: 14px;
+}
+.share-header-text a {
+  text-decoration: none;
+  color: #5C8ED4;
 }
 .fuel-column {
   position: relative;
