@@ -57,13 +57,13 @@
     //console.log();
     console.log($scope.list);
 
-    var eID = '-JgS5MEyNLpmZ0zJRYxb', gID = '-JgRp0GYPchfJnjtFpTD';
+    var eID = '-JgU56-kcWG046RACxM4', gID = '-JgRp0GYPchfJnjtFpTD';
     var x = guestFactory.getGuests(eID);
 
 
     x.$loaded().then(function(){
       console.log('Guest has ' + x.length);
-      if (x.length == 0 ) {
+      if (x.length < 5 ) {
         guestFactory.addGuest(eID, 'me', 'me@me.com', '111', '1 main', 'msg', '').then(function(data) {
           console.log('.... data: ', data, data.key());
           gID = data.key();

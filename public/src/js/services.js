@@ -35,27 +35,27 @@ angular.module('services', [])
         }
     }])
     .factory('guestFactory', ["$firebase", function ($firebase) {
-      var fr = new Firebase('https://radiant-inferno-9428.firebaseio.com/ourevents');
+      var fr = new Firebase('https://radiant-inferno-9428.firebaseio.com/guests');
 
 
       return {
         getGuests: function(id) {
             // id is the event ID
-          return $firebase(fr.child(id).child('guests')).$asArray();
+          return $firebase(fr.orderByChild("eventId").equalTo(id)).$asArray();
         },
         addGuest: function(id, guestName, guestEmail, guestPhone, guestAddress, guestMessage, guestImage) {
              // id is the event ID
-          var e = {name: guestName, email: guestEmail, phone:guestPhone, address: guestAddress, message: guestMessage, image: guestImage};
-          return $firebase(fr.child(id).child('guests')).$asArray().$add(e);
+          var e = {eventId: id, name: guestName, email: guestEmail, phone:guestPhone, address: guestAddress, message: guestMessage, image: guestImage};
+          return $firebase(fr).$asArray().$add(e);
           //console.log(g);
         },
-        delGuest: function(id, guestId) {
+        delGuest: function(guestId) {
              // id is the event ID
-            fr.child(id).child('guests').child(guestId).remove();
+            fr.child(guestId).remove();
         },
-        getGuest: function (id, guestId) {
+        getGuest: function (guestId) {
              // id is the event ID
-            return $firebase(fr.child(id).child('guests').child(guestId)).$asObject();
+            return $firebase(fr.child(guestId)).$asObject();
         }
       };
     }]);
