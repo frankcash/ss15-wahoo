@@ -24,6 +24,11 @@
         // console.log("ahh, the memories!",$scope.theMemories, data);
       })
 
+      $scope.startEvents = memoriesFactory.getMemoriesStart($scope.memory)
+      $scope.startEvents.$loaded().then(function(data){ $scope.startEvents = (data[0].timestamp) });
+      $scope.endEvents = memoriesFactory.getMemoriesEnd($scope.memory);
+      $scope.endEvents.$loaded().then(function(data){ $scope.endEvents  = (data[0].timestamp) });
+      console.log("times" , $scope.startEvents, $scope.endEvents);
 
       /**
       *@summary gets all memories for an event
@@ -31,7 +36,6 @@
       */
       $scope.resolveMemories = function(eventId){
         memoriesFactory.getMemories(eventId);
-
       }
 
       /**
@@ -70,14 +74,14 @@
       $scope.errBack = function(e) {
         console.log('Reeeejected!', e);
       };
-    
+
     $scope.cancelCheckIn = function(){
       console.log('asdfsafasfsdaffasd');
       $location.path('/event/'+$scope.thisEvent);
     };
-    
+
     $scope.checkIn = function(){
-      
+
       if ($scope.name && $scope.email) {
         console.log('checking in');
         //id, guestName, guestEmail, guestPhone, guestAddress, guestMessage, guestImage
@@ -89,7 +93,7 @@
       }
       //$location.path('/event/'+$scope.thisEvent);
     };
-    
+
       // this.event
       $scope.hasMedia= function() {
         console.log('herer');

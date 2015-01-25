@@ -1,4 +1,13 @@
 <div ng-controller="MemoriesCtrl">
+  <div class="w-row memory-row" data-ix="memory-row-fade-in">
+    <div class="w-col w-col-2 timeline-time">
+      <div class="now">11:00</div>
+      <div class="memory-time"><img class="check-in-icon" src="src/img/checkmark.svg" width="20" height="30" alt="54c3e3c31607796117f6c3f3_checkmark.svg">
+      </div>
+    </div>
+    <div class="w-col w-col-10 timeline-events">
+  <!--  -->
+  {{startEvents}} : {{endEvents}}
       <ul class="w-clearfix memory-list">
         <li class="memory-container" ng-repeat="things in theMemories">
           <div class="memory-timestamp">{{things.timestamp| date : 'shortTime' }}</div>
@@ -6,5 +15,8 @@
           <div class="memory-guest">{{resolveGuest(things.guestId)}} </div>
         </li>
       </ul>
+  <!--  -->
+    </div>
+  </div>
 
 </div>
