@@ -103,7 +103,7 @@ p {
 }
 .section.footer {
   clear: both;
-  background-color: #5c8ed4;
+  background-color: #2A2D48;
   text-align: left;
 }
 .section.timeline-wrapper {
@@ -134,7 +134,7 @@ p {
   -webkit-transition-duration: 500ms, 500ms;
   transition-duration: 500ms, 500ms;
   font-family: proxima-nova, sans-serif;
-  color: white;
+  color: #2A2D48;
   font-weight: 100;
 }
 .nav-link.sign-up:hover {
@@ -226,7 +226,7 @@ p {
 .nav-bar.subpages {
   position: relative;
   z-index: 3;
-  background-color: #5c8ed4;
+  background-color: #2A2D48;
 }
 .input {
   display: block;
