@@ -17,12 +17,12 @@
   </div>
 
   <div class="timeline">
-    <div class="w-row memory-row" ng-repeat="item in list">
+    <div class="w-row memory-row" ng-repeat="item in list | orderBy:'eTime':true">
       <div class="w-col w-col-2 timeline-time">
         <div class="memory-time">
-          <div class="event-date">24</div>
+          <div class="event-date">{{ item.eTime |date:'dd' }}</div>
         </div>
-        <div class="events-date">January</div>
+        <div class="events-date">{{ item.eTime |date:'MMM' }}</div>
       </div>
       <div class="w-col w-col-10 timeline-events events-timeline" ng-click="goNext('/event/' + this.item.$id)">
         <div class="w-clearfix events-list-item">

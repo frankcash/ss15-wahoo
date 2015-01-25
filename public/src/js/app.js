@@ -40,7 +40,7 @@
       $scope.guestInfo.$loaded().then(function(data){
         console.log("GUEST INFO:", $scope.guestInfo, data);
       })
-      
+
       // this.event
   }]);
 
@@ -178,7 +178,7 @@
       templateUrl: 'src/templates/all-guests.html'
     }
   });
-  
+
     app.directive('allGuest', function(){
     return{
       restrict: 'E',
