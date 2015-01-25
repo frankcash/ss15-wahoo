@@ -214,7 +214,7 @@
         console.log('aaaa');
         if ($scope.myStream) {
           //console.log(myStream);
-          $scope.context.drawImage($scope.video, 0, 0, 250, 250);
+          $scope.context.drawImage($scope.video, 0, 0, 334, 250);
           // "image/webp" works in Chrome.
           // Other browsers will fall back to image/png.
           //document.querySelector('img').src = canvas.toDataURL('image/webp');
