@@ -687,6 +687,7 @@ p {
 }
 .events-list-link {
   margin-top: 31px;
+  float:right;
   margin-right: 20px;
 }
 html.w-mod-js *[data-ix="new-interaction"] {
