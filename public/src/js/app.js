@@ -28,12 +28,15 @@
       }
   }])
 
-  app.controller('SpecificEventCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams',
-    function($scope, $location, eventsFactory, $route, $routeParams){
+  app.controller('SpecificEventCtrl', ['$scope', '$location', 'eventsFactory', 'guestFactory','$route','$routeParams',
+    function($scope, $location, eventsFactory, guestFactory, $route, $routeParams){
       console.log('SpecificEventController');
       this.params = $routeParams;
       $scope.thisEvent = this.params.itemId;
       console.log("params",this.params.itemId);
+      $scope.eventInfo = eventsFactory.getEvent($scope.thisEvent);
+      $scope.guestInfo = guestFactory.getGuests($scope.thisEvent);
+      console.log("guests", $scope.guestInfo);
       // this.event
   }]);
 
@@ -57,7 +60,7 @@
     //console.log();
     console.log($scope.list);
 
-    var eID = '-JgU56-kcWG046RACxM4', gID = '-JgRp0GYPchfJnjtFpTD';
+    var eID = '-JgU3UFT391NjFMzisGI', gID = '-JgUEMUe_GrzkXr4ShYu';
     var x = guestFactory.getGuests(eID);
 
 

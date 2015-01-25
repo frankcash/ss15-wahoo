@@ -3,7 +3,9 @@
 
   <all-guests></all-guests>
   <my-memories info=this.thisEvent></my-memories>
-
+    {{eventInfo}}
+    <hr>
+    {{guestInfo}}
 
 <!-- presentation -->
 
@@ -14,15 +16,15 @@
     <div class="w-row header-columns">
       <div class="w-col w-col-6 memory-header-column">
         <div class="event-title">
-          <h2 class="event-name">Dance Party</h2>
+          <h2 class="event-name">{{eventInfo.eventName}}</h2>
           <div class="check-in-header-wrap"><img class="checkmark-icon" src="src/img/bluecheckmark.svg" alt="54c3e6c72d5eaa62179003d3_bluecheckmark.svg">
-            <div class="guests-checked-in">40 Guests Checked In</div>
+            <div class="guests-checked-in">{{guestInfo.length}} Guests Checked In</div>
           </div>
         </div>
       </div>
       <div class="w-col w-col-6 w-clearfix share-column">
         <div class="w-clearfix link-icon-wrap"><img class="link-icon" src="src/img/link.svg" alt="54c3e8a22d5eaa6217900413_link.svg">
-          <div class="share-header-text">Link</div>
+          <div class="share-header-text"><a ng-href="index.html#/event/{{thisEvent}}">Link</a></div>
         </div>
         <div class="w-clearfix share-icon-wrap"><img class="link-icon" src="src/img/share.svg" alt="54c3e9542d5eaa6217900448_share.svg">
           <div class="share-header-text">Share</div>
