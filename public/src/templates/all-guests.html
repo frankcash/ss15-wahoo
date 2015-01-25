@@ -1,1 +1,4 @@
-<p ng-repeat = "people in guests"> {{people.email}} </p>
+<div ng-controller="SpecificEventCtrl">
+    {{guestInfo}}
+<p ng-repeat = "people in guestInfo">{{people.$id}} {{people.email}} </p>
+</div>
