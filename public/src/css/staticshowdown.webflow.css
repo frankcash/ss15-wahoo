@@ -92,7 +92,7 @@ p {
   padding-top: 0px;
   padding-bottom: 0px;
   background-color: #5a6073;
-  background-image: url('../img/Hero_Image.png');
+  background-image: url('/src/img/Hero_Image.png');
   background-size: cover;
   background-attachment: scroll;
   text-align: center;
@@ -183,7 +183,7 @@ p {
   padding-top: 21px;
   border-radius: 190px;
   background-color: rgba(26, 26, 26, 0.09);
-  background-image: url('./img/Step1Create.svg');
+  background-image: url('/src/img/Step1Create.svg');
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -199,14 +199,14 @@ p {
   height: 200px;
   margin-right: auto;
   margin-left: auto;
-  background-image: url('./img/Step2Link.svg');
+  background-image: url('/src/img/Step2Link.svg');
 }
 .circle.enjoy {
   width: 200px;
   height: 200px;
   margin-right: auto;
   margin-left: auto;
-  background-image: url('./img/Step3Timeline.svg');
+  background-image: url('/src/img/Step3Timeline.svg');
 }
 .footer-text {
   display: inline-block;
@@ -302,8 +302,7 @@ p {
   color: white;
 }
 .error-text {
-  color: white;
-}
+  
 .timeline-header {
   width: 100%;
   height: 100px;
@@ -341,7 +340,7 @@ p {
 }
 .timeline {
   height: auto;
-  background-image: url('../img/line.svg');
+  background-image: url('/src/img/line.svg');
   background-position: 0px 50%;
   background-repeat: repeat-y;
 }
@@ -1077,4 +1076,3 @@ html.w-mod-js.w-mod-no-ios *[data-ix="plop-3"] {
   .fuel-wrapper {
     margin-top: 0px;
   }
-}
