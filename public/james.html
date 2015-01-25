@@ -47,14 +47,14 @@
 		navigator.webkitGetUserMedia(videoObj, function(stream){
 			video.src = window.URL.createObjectURL(stream);
 			video.play();
-                        myStream = stream;
+      myStream = stream;
 		}, errBack);
 	}
 	else if(navigator.mozGetUserMedia) { // Firefox-prefixed
 		navigator.mozGetUserMedia(videoObj, function(stream){
 			video.src = window.URL.createObjectURL(stream);
 			video.play();
-                        myStream = stream;
+      myStream = stream;
 		}, errBack);
         };
 </script>

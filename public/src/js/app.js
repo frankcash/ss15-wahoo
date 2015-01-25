@@ -17,17 +17,35 @@
   app.controller('MemoriesCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
     function($scope, eventsFactory, guestFactory, memoriesFactory){
       console.log('we are being fired');
+      $scope.guestList = guestFactory.getGuests($scope.memory);
+
       $scope.theMemories = memoriesFactory.getMemories($scope.memory);
       $scope.theMemories.$loaded().then(function(data){
         console.log("ahh, the memories!",$scope.theMemories, data);
+
       })
+
 
       console.log("scope.memory",$scope.memory);
 
       $scope.resolveMemories = function(eventId){
         console.log("eId", eventId);
         memoriesFactory.getMemories(eventId);
+
       }
+
+      $scope.resolveGuest = function(guestId){
+        angular.forEach($scope.guestList, function(obj, key){
+          console.log(obj);
+          if(obj.$id===guestId){
+            console.log(obj.email);
+            result = (obj.email)
+          }
+        });
+        return result;
+      }
+
+
   }])
 
   app.controller('SpecificEventCtrl', ['$scope', '$location', 'eventsFactory', 'guestFactory','$route','$routeParams', 'memoriesFactory',
