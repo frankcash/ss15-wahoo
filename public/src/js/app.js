@@ -6,6 +6,7 @@
                 when('/home', {templateUrl: 'src/templates/home.html',   controller: 'IndexCtrl'}).
                 when('/eventList', {templateUrl: 'src/templates/all-events.html',   controller: 'EventsCtrl'}).
                 when('/event/:eventId', {templateUrl: 'src/templates/specific-event.html'}).
+                when('/register/:eventId', {templateUrl: 'src/templates/register.html'}).
                 when('/share/:eventId/:guestId', {templateUrl: 'src/templates/share-memory.html'}).
                 when('/create', {templateUrl: 'src/templates/create-event.html',   controller: 'IndexCtrl'}).
                 when('/memory/:eventId/:guestId', {templateUrl: 'src/templates/my-memories.html',   controller: 'MemoriesCtrl'}).
