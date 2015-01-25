@@ -40,10 +40,24 @@
 
 <script>
   function tooltip(element) {
-    console.log('********* tooltip', $(element));
-    $(element).tooltipsy();
+    $(element).tooltipsy({
+      css: {
+          'padding': '20px',
+          'color': '#CCC',
+          'background-color': '#292D48',
+          'border': '1px solid #deca7e',
+          '-moz-box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
+          '-webkit-box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
+          'box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
+          'text-shadow': 'none',
+          '-webkit-border-radius': '5px',
+          '-moz-border-radius': '5px',
+          'border-radius': '5px'
+      }
+    });
   }
 </script>
+
 
   </head>
   <body ng-app="memoreez">
@@ -86,6 +100,5 @@
     <!-- <script type="text/javascript" src="./src/js/webflow.js"></script>-->
 
     <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
-
   </body>
 </html>
