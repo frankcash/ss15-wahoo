@@ -367,7 +367,7 @@ p {
   text-align: left;
 }
 .timeline {
-  height: auto;
+  min-height: 500px;
   background-image: url('/src/img/line.svg');
   background-position: 0px 50%;
   background-repeat: repeat-y;
