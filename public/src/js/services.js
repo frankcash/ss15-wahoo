@@ -29,7 +29,7 @@ angular.module('services', [])
                 $firebase(fr.child(eventId)).$asArray().$add(m);
             },
             getMemories: function(eventId){
-                return $firebase(fr.orderByChild('eTime').child(eventId)).$asArray();
+                return $firebase(fr.orderByChild('eTime').equalTo(eventId)).$asArray();
             },
             getMemoriesStart: function(eventId){
                 return $firebase(fr.orderByChild('eTime').limitToFirst(1).child(eventId)).$asArray();
