@@ -1,6 +1,6 @@
 <div ng-controller="EventsCtrl">
   <li  ng-repeat="item in list"  ng-click="openSpecific(this)" ng-init="showMemories=false">
-    <span ng-click="goNext('/eventPage')">{{ item.eventName|json }}</span>
+    <span ng-click="goNext('/event/' + this.item.$id)">{{ item.eventName|json }}</span>
     <my-memories ng-show="showMemories" info="this.item.$id"></my-memories>
   </li>
 

@@ -8,11 +8,10 @@
                 when('/event/:itemId', {templateUrl: 'src/templates/specific-event.html'}).
                 when('/create', {templateUrl: 'src/templates/create-event.html',   controller: 'IndexCtrl'}).
                 when('/memory/:eventId/:guestId', {templateUrl: 'src/templates/my-memories.html',   controller: 'MemoriesCtrl'}).
-                when('/about', {templateUrl: 'src/templates/about.html',   controller: 'IndexCtrl'}).
-                
-                otherwise({redirectTo: '/home'});
+                when('/about', {templateUrl: 'src/templates/about.html',   controller: 'IndexCtrl'})
+                .otherwise({redirectTo: '/home'});
   }]);
-  
+
   app.controller('MemoriesCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
     function($scope, eventsFactory, guestFactory, memoriesFactory){
       console.log('we are being fired');
@@ -32,6 +31,10 @@
   app.controller('SpecificEventCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams',
     function($scope, $location, eventsFactory, $route, $routeParams){
       console.log('SpecificEventController');
+      this.params = $routeParams;
+      $scope.thisEvent = this.params.itemId;
+      console.log("params",this.params.itemId);
+      // this.event
   }]);
 
   app.controller('EventsCtrl', ['$scope', '$location','eventsFactory', 'guestFactory', 'memoriesFactory',
@@ -41,7 +44,7 @@
       console.log(obj);
       console.log(obj.item.$id);
     }
-    
+
     $scope.goNext = function (hash) {
       console.log('HASH: ', hash);
       $location.path(hash);
