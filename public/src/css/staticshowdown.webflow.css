@@ -183,7 +183,7 @@ p {
   padding-top: 21px;
   border-radius: 190px;
   background-color: rgba(26, 26, 26, 0.09);
-  background-image: url('/src/img/Step1Create.svg');
+  background-image: url('/public/src/img/Step1Create.svg');
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -199,14 +199,14 @@ p {
   height: 200px;
   margin-right: auto;
   margin-left: auto;
-  background-image: url('/src/img/Step2Link.svg');
+  background-image: url('/public/src/img/Step2Link.svg');
 }
 .circle.enjoy {
   width: 200px;
   height: 200px;
   margin-right: auto;
   margin-left: auto;
-  background-image: url('/src/img/Step3Timeline.svg');
+  background-image: url('/public/src/img/Step3Timeline.svg');
 }
 .footer-text {
   display: inline-block;
@@ -302,7 +302,7 @@ p {
   color: white;
 }
 .error-text {
-  
+
 .timeline-header {
   width: 100%;
   height: 100px;
