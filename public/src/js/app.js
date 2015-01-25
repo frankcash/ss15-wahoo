@@ -33,10 +33,17 @@
       })
 
       $scope.startEvents = memoriesFactory.getMemoriesStart($scope.memory)
+
+      /**
+      *@summary creates array of hours + memories per hour
+      *@name $scope.startEvents a promise from firebase
+      *@name $scope.endEvents a promise from firebase
+      */
       $scope.startEvents.$loaded().then(function(data){
         $scope.startEvents = (data[0].timestamp);
         $scope.endEvents = memoriesFactory.getMemoriesEnd($scope.memory);
-        
+
+
         $scope.endEvents.$loaded().then(function(dataE){
           $scope.endEvents  = (dataE[0].timestamp);
           // ok got event start and end
@@ -55,7 +62,7 @@
           var hours = [];
           var lastdate = new Date(data[0].timestamp);
           // remove minutes
-          lastdate.setMinutes(0); 
+          lastdate.setMinutes(0);
           for(var i=0; i< Math.ceil(numOfHrs); i++){
             var s = (new Date(lastdate.getTime())).getTime();
             lastdate.setHours(lastdate.getHours()+1);
@@ -65,27 +72,27 @@
             var p = memoriesFactory.getMemoriesWithTime($scope.memory, s, e);
             p.$loaded().then(function(dataTime) {
               console.log(dataTime);
-              var sDate = new Date( dataTime[0].timestamp);
-              var eDate = new Date( dataTime[0].timestamp);
-              sDate.setMinutes(0);
-              eDate.setMinutes(0);
-              eDate.setHours(eDate.getHours() + 1);
-              
-              hours.push({sHour: sDate.getTime(), eHour: eDate.getTime() , 'memories': dataTime });
-              $scope.hours = hours;
-              console.log($scope.hours);
+              if(dataTime.length>0){
+                var sDate = new Date( dataTime[0].timestamp);
+                var eDate = new Date( dataTime[0].timestamp);
+                sDate.setMinutes(0);
+                eDate.setMinutes(0);
+                eDate.setHours(eDate.getHours() + 1);
+
+                hours.push({sHour: sDate.getTime(), eHour: eDate.getTime() , 'memories': dataTime });
+                $scope.hours = hours;
+                console.log($scope.hours);
+              }
+
             });
-            
+
           }
-          
-          
-          
-          //alert((24-15.5) * (numOfHrs/24));
+
         });
       });
-      
 
-      
+
+
       console.log("times" , $scope.startEvents, $scope.endEvents);
 
       /**
@@ -167,7 +174,7 @@
 
       // this.event
       $scope.hasMedia= function() {
-        console.log('herer');
+        console.log('here');
         var breturn= (window.navigator.getUserMedia || window.navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia);
 
         if (breturn) {
@@ -207,7 +214,7 @@
         console.log('aaaa');
         if ($scope.myStream) {
           //console.log(myStream);
-          $scope.context.drawImage($scope.video, 0, 0, 250, 250);
+          $scope.context.drawImage($scope.video, 0, 0, 334, 250);
           // "image/webp" works in Chrome.
           // Other browsers will fall back to image/png.
           //document.querySelector('img').src = canvas.toDataURL('image/webp');
@@ -264,67 +271,7 @@
 
 
     $scope.list = eventsFactory.getEvents();
-    // get a specific event
-    //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
-    //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
-    //console.log();
-    console.log($scope.list);
-    //
-    var eID = '-JgU3UFT391NjFMzisGI', gID = '-JgUEMUe_GrzkXr4ShYu';
-    //var x = guestFactory.getGuests(eID);
-    //
-    //
-    //x.$loaded().then(function(){
-    //  console.log('Guest has ' + x.length);
-    //  if (x.length < 5 ) {
-    //    guestFactory.addGuest(eID, 'me', 'me@me.com', '111', '1 main', 'msg', '').then(function(data) {
-    //      console.log('.... data: ', data, data.key());
-    //      gID = data.key();
-    //    });
-    //  }
-    //});
 
-
-    $scope.hasMedia= function() {
-      return (window.navigator.getUserMedia || window.navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia);
-      //return false;
-    };
-
-    $scope.uploadPic = function(thePic){
-      memoriesFactory.addMemory(eID, gID, thePic,'image','this is my awesome 2', false);
-    };
-
-    $scope.uploadFile = function(element) {
-      console.log('bbbbb',element.files,arguments );
-      var fd = new FormData();
-        //Take the first selected file
-        fd.append("file", element.files[0]);
-        console.log('ccccc',fd );
-
-        $scope.theFile =  element.files[0];
-        //scope.progressVisible = false
-        console.log('file is here: ', $scope.theFile);
-
-        var reader = new FileReader();
-
-        reader.onload = function(readerEvt) {
-            var binaryString = readerEvt.target.result;
-            $scope.blobFile = "data:"+ $scope.theFile.type + ";base64,"+ btoa(binaryString);
-            document.getElementById('myimg').src = $scope.blobFile;
-            //console.log($scope.blobFile);
-
-            memoriesFactory.addMemory(eID, gID, $scope.blobFile,'image','this is my awesome', false);
-        };
-
-        reader.readAsBinaryString($scope.theFile);
-
-    };
-
-    //
-    var m = memoriesFactory.getMemories(eID);
-        m.$loaded().then(function(){
-      console.log('Event has  ' + m.length + " memories");
-    })
   }]);
 
   app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams','guestFactory',

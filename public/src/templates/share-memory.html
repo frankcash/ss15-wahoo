@@ -1,13 +1,14 @@
 <div class="check-in" ng-controller="SpecificEventCtrl">
   <div class="camera-container" style="background-color: #fafafa; width: 100%; height: 300px; text-align: center;">
     <div class="camera" style="width: 50%; height: 100%; margin: 0 auto;">
-      
-              
+
+
+
       <!-- if no getUserMedia -->
       <div ng-show="isActive" ng-init="isActive=hasMedia()">
         <script>
           var videoObj = { "video": true };
-          
+
           function takepic() {
             if (myStream) {
               context.drawImage(video, 0, 0, 250, 250);
@@ -17,11 +18,11 @@
               angular.element(document.getElementById('theFile')).scope().uploadPic(canvas.toDataURL('image/webp'))
             }
           }
-            
+
           var errBack = function(e) {
             console.log('Reeeejected!', e);
           };
-          
+
           // Put video listeners into place
           if(navigator.getUserMedia) { // Standard
                   navigator.getUserMedia(videoObj, function(stream) {
@@ -44,14 +45,14 @@
                   }, errBack);
           };
         </script>
-        
+
         <video id="video" width="" height="250" autoplay></video>
-        <canvas id="canvas" width="" height="250"></canvas>
+        <canvas id="canvas" width="334" height="250"></canvas>
         <script>
-          var video =   document.getElementById("video"),  
+          var video =   document.getElementById("video"),
                         canvas = document.getElementById("canvas"),
                         context = canvas.getContext("2d")
-          var myStream = null; 
+          var myStream = null;
          </script>
       </div> <!-- /ng-show-->
     </div> <!-- /camera -->
@@ -60,10 +61,10 @@
     <div class="w-form">
       <form class="guest-form-wrapper" id="picture-form" name="picture-form" data-name="Picture Form">
         <div class="w-clearfix form-group">
-          <img id="myimg" src="">
-          <!-- change accept to video to take video -->
-          <input class="w-button picture" id="theFile" type="file" accept="image/*" file-model="myFile" onchange="angular.element(this).scope().uploadFile(this)">
-          <button class="w-button picture" type="submit" value="Take Picture" ng-click="takepic()">Take Picture</button>
+          <div style="text-align: center;"><img id="myimg" src=""></div>
+          <button class="w-button cancel" type="submit" value="Take Picture" ng-click="takepic()" style="width: 100%; display: block;">Take Picture</button>
+          <input class="w-button cancel" id="theFile" type="file" accept="image/*" file-model="myFile" onchange="angular.element(this).scope().uploadFile(this)" style="width: 100%; display: block;">
+
         </div>
       </form>
     </div>
