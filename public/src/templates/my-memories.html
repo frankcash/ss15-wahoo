@@ -1,10 +1,10 @@
 <div ng-controller="MemoriesCtrl">
-  <!-- {{memory}} -->
+  {{guestList}}
       <ul class="w-clearfix memory-list" ng-repeat="things in theMemories" >
         <li class="memory-container">
           <div class="memory-timestamp">{{things.timestamp| date : 'shortTime' }}</div>
           <img class="memory-media" height="100px" width="100px" ng-src="{{things.blobFile}}" alt="image-placeholder.svg">
-          <a href="#/share/{{memory}}/{{things.guestId}}">{{things.guestId}}</a>  
+          <a href="#/share/{{memory}}/{{things.guestId}}">{{things.guestId}} : {{resolveGuest(things.guestId)}} : {{thisTest()}}</a>
           <div class="memory-guest">{{things.message}} </div>
         </li>
       </ul>
