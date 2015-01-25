@@ -261,6 +261,9 @@
 
     //end
 
+    $scope.cancel = function(){
+      $location.path('/home');
+    };
     /**
     *@summary will use ng-click to submit form, gets info from ng-models
     *@param eventName
