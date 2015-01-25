@@ -417,6 +417,7 @@ p {
   padding-top: 20px;
   padding-bottom: 0px;
   padding-left: 0px;
+  margin-right: 30px;
   background-color: #fafafa;
 }
 .now {
@@ -619,12 +620,12 @@ p {
   float: left;
 }
 .share-icon-wrap {
-  width: 15%;
+  width: 80px;
   margin-top: 38px;
   float: right;
 }
 .link-icon-wrap {
-  width: 15%;
+  width: 80px;
   margin-top: 38px;
   margin-right: 70px;
   float: right;
