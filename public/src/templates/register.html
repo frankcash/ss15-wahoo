@@ -1,5 +1,5 @@
 
-<div class="check-in">
+<div class="check-in" ng-controller="EventsCtrl">
     <div class="w-container">
       <div class="w-form">
         <form class="guest-form-wrapper" id="register-form" name="register-form" data-name="Register Form">
@@ -37,7 +37,7 @@
           </div>
           <div class="w-clearfix form-group">
             <input class="w-button submit" type="submit" value="SUBMIT" data-wait="Please wait...">
-            <input class="w-button cancel" type="submit" value="CANCEL" data-wait="Please wait...">
+            <input class="w-button cancel" type="submit" value="CANCEL" data-wait="Please wait..." ng-click="cancelCheckIn()">
           </div>
         </form>
         <div class="w-form-done">

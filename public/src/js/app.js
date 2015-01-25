@@ -166,6 +166,11 @@
       console.log('HASH: ', hash);
       $location.path(hash);
     }
+    
+    $scope.cancelCheckIn = function(){
+      console.log('asdfsafasfsdaffasd');
+      $location.path('/event/'+eID);
+    }
 
     $scope.list = eventsFactory.getEvents();
     // get a specific event
