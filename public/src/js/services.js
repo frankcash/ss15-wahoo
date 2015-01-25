@@ -1,6 +1,6 @@
 angular.module('services', [])
   .factory('eventsFactory', ["$firebase", function ($firebase) {
-        var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/events');
+        var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/ourevents');
 
         return {
             getEvents: function() {
@@ -35,7 +35,7 @@ angular.module('services', [])
         }
     }])
     .factory('guestFactory', ["$firebase", function ($firebase) {
-      var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/events');
+      var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/ourevents');
 
 
       return {
