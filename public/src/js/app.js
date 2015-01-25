@@ -38,8 +38,8 @@
         angular.forEach($scope.guestList, function(obj, key){
           console.log(obj);
           if(obj.$id===guestId){
-            console.log(obj.email);
-            result = (obj.email)
+            console.log(obj.name);
+            result = (obj.name)
           }
         });
         return result;
@@ -227,7 +227,7 @@
     })
   }]);
 
-  app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams','guestFactory', 
+  app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams','guestFactory',
                                function($scope, $location, eventsFactory, $route, $routeParams, guestFactory){
     console.log('ROUTE INFO:', $route, $routeParams);
     this.$route = $route;
@@ -244,11 +244,11 @@
       //document.getElementById("navbar1").style.display="block";
     }
     console.log("showHome", $scope.showHome);
-    
+
     //jes home page stuff
     !$scope.eventName && $routeParams.eventName && ($scope.eventName = $routeParams.eventName);
     !$scope.eventName && ($scope.eventName = 'Party');
-    
+
     $scope.createEvent = function(){
       console.log('-------', $scope.eventName)
       $location.path('/create/'+$scope.eventName);
@@ -279,10 +279,10 @@
             var guestId = gData.key();
             $location.path('/share/'+eventId+'/'+guestId);
           });
-          
-          
+
+
         })
-        
+
       }
 
 
