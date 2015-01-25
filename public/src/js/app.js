@@ -70,7 +70,12 @@
       $scope.errBack = function(e) {
         console.log('Reeeejected!', e);
       };
-
+    
+    $scope.cancelCheckIn = function(){
+      console.log('asdfsafasfsdaffasd');
+      $location.path('/event/'+$scope.thisEvent);
+    }
+    
       // this.event
       $scope.hasMedia= function() {
         console.log('herer');
@@ -166,11 +171,7 @@
       console.log('HASH: ', hash);
       $location.path(hash);
     }
-    
-    $scope.cancelCheckIn = function(){
-      console.log('asdfsafasfsdaffasd');
-      $location.path('/event/'+eID);
-    }
+
 
     $scope.list = eventsFactory.getEvents();
     // get a specific event
