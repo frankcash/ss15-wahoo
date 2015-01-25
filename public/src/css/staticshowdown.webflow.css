@@ -238,7 +238,7 @@ p {
   border-radius: 0;
   border-width: 0px 0px 2px;
   border-color: black black white;
-  background-color: rgba(255, 0, 0, 0);
+  background-color: transparent;
   -webkit-transition: none 0ms ease;
   transition: none 0ms ease;
   font-family:'Varela Round', sans-serif;

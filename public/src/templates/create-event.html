@@ -5,16 +5,16 @@
         <h1 class="check-in-header">CREATE&nbsp;EVENT</h1>
         <!-- maybe later  <div class="me-card">Have Me Card?</div> -->
         <div class="form-group">
-          <input class="w-input guest-form-input" id="event-name" type="text" name="Event Name" data-name="Event Name" ng-model="eventName" required="required" autofocus="autofocus">
-          <label class="guest-form-label" for="name-2">EVENT NAME</label>
+          <input class="w-input guest-form-input" id="event-name" type="text" name="Event Name" data-name="Event Name" ng-model="eventName" required="required" autofocus="autofocus" style="box-shadow: none;">
+          <label class="guest-form-label" for="name-2">EVENT NAME (required)</label>
         </div>
         <div class="form-group">
-          <input class="w-input guest-form-input" id="your-name" type="text" name="Your Name" data-name="Your Name" required="required" ng-model="orgName">
-          <label class="guest-form-label" for="name-2">YOUR NAME</label>
+          <input class="w-input guest-form-input" id="your-name" type="text" name="Your Name" data-name="Your Name" required="required" ng-model="orgName" style="box-shadow: none;">
+          <label class="guest-form-label" for="name-2">YOUR NAME (required)</label>
         </div>
         <div class="form-group">
-          <input class="w-input guest-form-input" id="Email" type="text" name="Email" data-name="Email" required="required" ng-model="orgEmail">
-          <label class="guest-form-label" for="name-2">YOUR EMAIL</label>
+          <input class="w-input guest-form-input" id="Email" type="text" name="Email" data-name="Email" required="required" ng-model="orgEmail" style="box-shadow: none;">
+          <label class="guest-form-label" for="name-2">YOUR EMAIL (required)</label>
         </div>
         <div class="w-clearfix form-group">
           <input class="w-button submit" type="submit" value="SUBMIT" ng-click="submitEvent()" >
