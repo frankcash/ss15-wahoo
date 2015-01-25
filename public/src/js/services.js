@@ -1,6 +1,6 @@
 angular.module('services', [])
   .factory('eventsFactory', ["$firebase", function ($firebase) {
-        var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/ourevents');
+        var fr = new Firebase('https://radiant-inferno-9428.firebaseio.com/ourevents');
 
         return {
             getEvents: function() {
@@ -19,7 +19,7 @@ angular.module('services', [])
         };
     }])
     .factory('memoriesFactory', ["$firebase", function($firebase){
-        var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/memories');
+        var fr = new Firebase('https://radiant-inferno-9428.firebaseio.com/memories');
 
         return {
             addMemory: function(eventId, guestId, theblob, blobType, msg, isPrivate) {
@@ -35,7 +35,7 @@ angular.module('services', [])
         }
     }])
     .factory('guestFactory', ["$firebase", function ($firebase) {
-      var fr = new Firebase('https://flickering-fire-6622.firebaseio.com/ourevents');
+      var fr = new Firebase('https://radiant-inferno-9428.firebaseio.com/ourevents');
 
 
       return {
