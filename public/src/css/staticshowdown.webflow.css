@@ -246,7 +246,7 @@ p {
   text-align: center;
 }
 .input:focus {
-  border-bottom-color: #3943a0;
+  border-bottom-color: #5E8FD2;
 }
 .form-container {
   width: 80%;
@@ -301,8 +301,6 @@ p {
   font-family:'Varela Round', sans-serif;
   color: white;
 }
-.error-text {
-  
 .timeline-header {
   width: 100%;
   height: 100px;
@@ -627,8 +625,11 @@ p {
 .made-by {
   margin-bottom: 14px;
   font-family:'Varela Round', sans-serif;
-  color: #2a2d48;
+  color: #fff;
   font-size: 16px;
+}
+.love {
+  color: #F58F8E;
 }
 .ss2015 {
   -webkit-transition: opacity 1000ms ease;
