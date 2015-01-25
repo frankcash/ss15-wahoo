@@ -81,7 +81,7 @@
       if ($scope.name && $scope.email) {
         console.log('checking in');
         //id, guestName, guestEmail, guestPhone, guestAddress, guestMessage, guestImage
-        var g = guestFactory.addGuest($scope.thisEvent, $scope.name, $scope.email?$scope.email:'' , $scope.phone ? scope.phone : '', $scope.address ? $scope.address : '', '','');
+        var g = guestFactory.addGuest($scope.thisEvent, $scope.name, $scope.email?$scope.email:'' , $scope.phone ? $scope.phone : '', $scope.address ? $scope.address : '', '','');
         g.then(function(data){
           var gId = data.key();
           $location.path('/share/'+$scope.thisEvent+'/'+gId);
