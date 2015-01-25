@@ -16,7 +16,7 @@
 
   app.controller('MemoriesCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
     function($scope, eventsFactory, guestFactory, memoriesFactory){
-      
+
       $scope.guestList = guestFactory.getGuests($scope.memory);
 
       $scope.theMemories = memoriesFactory.getMemories($scope.memory);
@@ -106,11 +106,10 @@
 
         }
 
-
         return breturn;
       };
 
-      $scope.takepic =     function takepic() {
+      $scope.takepic = function takepic() {
         console.log('aaaa');
         if ($scope.myStream) {
           //console.log(myStream);
@@ -254,8 +253,10 @@
     !$scope.eventName && $routeParams.eventName && ($scope.eventName = $routeParams.eventName);
     !$scope.eventName && ($scope.eventName = 'Party');
 
+    /**
+    *@summary will click and move to createEvent route with the event's name
+    */
     $scope.createEvent = function(){
-      console.log('-------', $scope.eventName)
       $location.path('/create/'+$scope.eventName);
     }
 
@@ -298,6 +299,7 @@
 
 
   }]);
+
   app.directive('myMemories', function(){
     return{
       restrict: 'E',
