@@ -291,6 +291,34 @@ p {
   background-color: rgba(255, 255, 255, 0.49);
   color: white;
 }
+
+/* picture button */
+.picture-button {
+  position: static;
+  left: 0px;
+  top: 0px;
+  display: block;
+  width: 30%;
+  margin-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  float: left;
+  clear: none;
+  border-radius: 3px;
+  background-color: #cdcedc;
+  font-family: proxima-nova, sans-serif;
+  color: #2a2d48;
+  font-size: 17px;
+  font-weight: 100;
+  text-align: center;
+  text-transform: uppercase;
+}
+.picture-button:hover {
+  background-color: #cdcedc;
+  color: #2a2d48;
+}
+/* end picture button */
+
 .form-wrapper {
   margin-top: 20px;
   -webkit-transition: background-color 500ms ease, color 500ms ease;
