@@ -1037,6 +1037,7 @@ html.w-mod-js.w-mod-no-ios *[data-ix="plop-3"] {
     display: block;
   }
   .memory-list {
+    width: 100%;
     margin-left: 0px;
     padding-top: 20px;
   }
