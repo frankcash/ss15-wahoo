@@ -6,6 +6,7 @@
                 when('/home', {templateUrl: 'src/templates/home.html',   controller: 'IndexCtrl'}).
                 when('/eventList', {templateUrl: 'src/templates/all-events.html',   controller: 'EventsCtrl'}).
                 when('/event/:itemId', {templateUrl: 'src/templates/specific-event.html'}).
+                when('/eg/:eventId/:guestId', {templateUrl: 'src/templates/all-guests.html'}).
                 when('/create', {templateUrl: 'src/templates/create-event.html',   controller: 'IndexCtrl'}).
                 when('/memory/:eventId/:guestId', {templateUrl: 'src/templates/my-memories.html',   controller: 'MemoriesCtrl'}).
                 when('/about', {templateUrl: 'src/templates/about.html',   controller: 'IndexCtrl'})
@@ -16,8 +17,8 @@
     function($scope, eventsFactory, guestFactory, memoriesFactory){
       console.log('we are being fired');
       $scope.theMemories = memoriesFactory.getMemories($scope.memory);
-      $scope.theMemories.$loaded().then(function(){
-        console.log("ahh, the memories!",$scope.theMemories);
+      $scope.theMemories.$loaded().then(function(data){
+        console.log("ahh, the memories!",$scope.theMemories, data);
       })
 
       console.log("scope.memory",$scope.memory);
@@ -36,7 +37,10 @@
       console.log("params",this.params.itemId);
       $scope.eventInfo = eventsFactory.getEvent($scope.thisEvent);
       $scope.guestInfo = guestFactory.getGuests($scope.thisEvent);
-      console.log("guests", $scope.guestInfo);
+      $scope.guestInfo.$loaded().then(function(data){
+        console.log("GUEST INFO:", $scope.guestInfo, data);
+      })
+      
       // this.event
   }]);
 
@@ -168,6 +172,14 @@
   });
 
   app.directive('myAttendee', function(){
+    return{
+      restrict: 'E',
+      scope: true, // uses prototypical inheritence
+      templateUrl: 'src/templates/all-guests.html'
+    }
+  });
+  
+    app.directive('allGuest', function(){
     return{
       restrict: 'E',
       scope: true, // uses prototypical inheritence

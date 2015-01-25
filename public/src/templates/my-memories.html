@@ -1,9 +1,14 @@
 <div ng-controller="MemoriesCtrl">
   <!-- {{memory}} -->
-  {{theMemories}}
-  <div ng-repeat="things in theMemories">
-    <!-- {{things.blobFile}} -->
-    <hr>
-    <img width="10px" height="10px" ng-src="{{things.blobFile}}"></img>
-  </div>
+      <ul class="w-clearfix memory-list" ng-repeat="things in theMemories" >
+        <li class="memory-container">
+          <div class="memory-timestamp">{{things.timestamp| date : 'shortTime' }}</div>
+          <img class="memory-media" height="100px" width="100px" ng-src="{{things.blobFile}}" alt="image-placeholder.svg">
+          <a href="#/eg/{{memory}}/{{things.guestId}}">{{things.guestId}}</a>  
+          <div class="memory-guest">{{things.message}} </div>
+        </li>
+      </ul>
+
 </div>
+
+
