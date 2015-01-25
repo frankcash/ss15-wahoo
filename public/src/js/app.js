@@ -16,29 +16,34 @@
 
   app.controller('MemoriesCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
     function($scope, eventsFactory, guestFactory, memoriesFactory){
-      console.log('we are being fired');
+      
       $scope.guestList = guestFactory.getGuests($scope.memory);
 
       $scope.theMemories = memoriesFactory.getMemories($scope.memory);
       $scope.theMemories.$loaded().then(function(data){
-        console.log("ahh, the memories!",$scope.theMemories, data);
-
+        // console.log("ahh, the memories!",$scope.theMemories, data);
       })
 
 
-      console.log("scope.memory",$scope.memory);
-
+      /**
+      *@summary gets all memories for an event
+      *@param eventId needs to be passed the event id
+      */
       $scope.resolveMemories = function(eventId){
-        console.log("eId", eventId);
         memoriesFactory.getMemories(eventId);
 
       }
 
+      /**
+      *@summary takes in guestId and returns the guest name
+      *@param guestId the guest's Id
+      *@param $scope.guestList firebase list of all guests
+      */
       $scope.resolveGuest = function(guestId){
         angular.forEach($scope.guestList, function(obj, key){
-          console.log(obj);
+          // console.log(obj);
           if(obj.$id===guestId){
-            console.log(obj.name);
+            // console.log(obj.name);
             result = (obj.name)
           }
         });
