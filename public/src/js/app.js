@@ -76,6 +76,15 @@
       $location.path('/event/'+$scope.thisEvent);
     };
     
+    $scope.shareCancel = function(){
+      //console.log('asdfsafasfsdaffasd');
+      $location.path('/memory/'+$scope.thisEvent + '/'+$scope.thisGuestId);
+    };
+     $scope.share = function(){
+      console.log('share it NOW');
+      //$location.path('/memory/'+$scope.thisEvent + '/'+$scope.thisGuestId);
+    };
+       
     $scope.checkIn = function(){
       
       if ($scope.name && $scope.email) {
@@ -132,7 +141,7 @@
         console.log('aaaa');
         if ($scope.myStream) {
           //console.log(myStream);
-          $scope.context.drawImage($scope.video, 0, 0, 640, 480);
+          $scope.context.drawImage($scope.video, 0, 0, 250, 250);
           // "image/webp" works in Chrome.
           // Other browsers will fall back to image/png.
           //document.querySelector('img').src = canvas.toDataURL('image/webp');
