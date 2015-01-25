@@ -25,7 +25,6 @@ angular.module('services', [])
             addMemory: function(eventId, guestId, theblob, blobType, msg, isPrivate) {
                 fr.child(eventId)
                 var m = {"guestId": guestId, timestamp: (new Date()).getTime(), message: msg, "type": blobType, "private": isPrivate };
-                // TODO transloadit to something
                 m.blobFile = theblob;
                 $firebase(fr.child(eventId)).$asArray().$add(m);
             },

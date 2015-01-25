@@ -1,6 +1,7 @@
 <div ng-controller="SpecificEventCtrl">
-  {{thisEvent.$id}} : {{thisEvent.eventName}}
+  {{thisEvent}} : {{thisEvent.eventName}}
 
   <all-guests></all-guests>
+  <my-memories info=this.thisEvent></my-memories>
 
 </div>
