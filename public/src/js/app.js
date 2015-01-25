@@ -214,61 +214,9 @@
 
 
     $scope.list = eventsFactory.getEvents();
-    // get a specific event
-    //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
-    //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
-    //console.log();
+
     console.log($scope.list);
-    //
-    var eID = '-JgU3UFT391NjFMzisGI', gID = '-JgUEMUe_GrzkXr4ShYu';
-    //var x = guestFactory.getGuests(eID);
-    //
-    //
-    //x.$loaded().then(function(){
-    //  console.log('Guest has ' + x.length);
-    //  if (x.length < 5 ) {
-    //    guestFactory.addGuest(eID, 'me', 'me@me.com', '111', '1 main', 'msg', '').then(function(data) {
-    //      console.log('.... data: ', data, data.key());
-    //      gID = data.key();
-    //    });
-    //  }
-    //});
 
-
-    $scope.hasMedia= function() {
-      return (window.navigator.getUserMedia || window.navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia);
-      //return false;
-    };
-
-    $scope.uploadPic = function(thePic){
-      memoriesFactory.addMemory(eID, gID, thePic,'image','this is my awesome 2', false);
-    };
-
-    $scope.uploadFile = function(element) {
-      console.log('bbbbb',element.files,arguments );
-      var fd = new FormData();
-        //Take the first selected file
-        fd.append("file", element.files[0]);
-        console.log('ccccc',fd );
-
-        $scope.theFile =  element.files[0];
-        //scope.progressVisible = false
-        console.log('file is here: ', $scope.theFile);
-
-        var reader = new FileReader();
-
-        reader.onload = function(readerEvt) {
-            var binaryString = readerEvt.target.result;
-            $scope.blobFile = "data:"+ $scope.theFile.type + ";base64,"+ btoa(binaryString);
-            document.getElementById('myimg').src = $scope.blobFile;
-            //console.log($scope.blobFile);
-
-            memoriesFactory.addMemory(eID, gID, $scope.blobFile,'image','this is my awesome', false);
-        };
-
-        reader.readAsBinaryString($scope.theFile);
-
-    };
 
     //
     var m = memoriesFactory.getMemories(eID);
