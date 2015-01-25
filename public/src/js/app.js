@@ -124,9 +124,11 @@
     if($location.path() === "/home"){
       console.log($location.path());
       $scope.showHome = false;
+      document.getElementById("navbar1").style.display="none";
     }else{
       console.log("not home");
       $scope.showHome=true;
+      document.getElementById("navbar1").style.display="block";
     }
     console.log("showHome", $scope.showHome);
 
