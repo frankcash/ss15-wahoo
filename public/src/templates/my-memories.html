@@ -1,5 +1,4 @@
 <div ng-controller="MemoriesCtrl">
-  {{guestList}}
       <ul class="w-clearfix memory-list" ng-repeat="things in theMemories" >
         <li class="memory-container">
           <div class="memory-timestamp">{{things.timestamp| date : 'shortTime' }}</div>
