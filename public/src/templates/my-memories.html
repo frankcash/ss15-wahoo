@@ -4,7 +4,7 @@
         <li class="memory-container">
           <div class="memory-timestamp">{{things.timestamp| date : 'shortTime' }}</div>
           <img class="memory-media" height="100px" width="100px" ng-src="{{things.blobFile}}" alt="image-placeholder.svg">
-          <a href="#/eg/{{memory}}/{{things.guestId}}">{{things.guestId}}</a>  
+          <a href="#/share/{{memory}}/{{things.guestId}}">{{things.guestId}}</a>  
           <div class="memory-guest">{{things.message}} </div>
         </li>
       </ul>

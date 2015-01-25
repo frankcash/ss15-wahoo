@@ -35,7 +35,7 @@
       <div class="memory-time"><img class="check-in-icon" src="src/img/checkmark.svg" width="20" height="30" alt="54c3e3c31607796117f6c3f3_checkmark.svg">
       </div>
     </div>
-    <div class="w-col w-col-10 timeline-events"><a class="button create-memory" href="#">Add Memory</a>
+    <div class="w-col w-col-10 timeline-events"><a class="button create-memory" href="#/register/{{thisEvent}}">Add Memory</a>
     </div>
   </div>
   <div class="w-row memory-row" data-ix="memory-row-fade-in">
@@ -63,9 +63,10 @@
       </div>
     </div>
     <div class="w-col w-col-10 timeline-events">
-  <my-memories info=this.thisEvent>
 
-  </my-memories>
+      <my-memories info=this.thisEvent>
+
+      </my-memories>
     </div>
   </div>
 

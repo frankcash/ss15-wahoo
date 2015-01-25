@@ -1,0 +1,64 @@
+
+
+<div ng-controller="SpecificEventCtrl">
+      <img id="myimg" src=""></img>
+      <!-- change accept to video to take video -->
+      <input id="theFile" type="file" accept="image/*" file-model="myFile" onchange="angular.element(this).scope().uploadFile(this)">
+        
+        <!-- if no getUserMedia -->
+        <div ng-show="isActive" ng-init="isActive=hasMedia()">
+            <script>
+    var videoObj = { "video": true };
+    
+    function takepic() {
+      //console.log('aaaa');
+      if (myStream) {
+        //console.log(myStream);
+        context.drawImage(video, 0, 0, 640, 480);
+        // "image/webp" works in Chrome.
+        // Other browsers will fall back to image/png.
+        //document.querySelector('img').src = canvas.toDataURL('image/webp');
+        angular.element(document.getElementById('theFile')).scope().uploadPic(canvas.toDataURL('image/webp'))
+        //console.log(canvas.toDataURL('image/webp'));
+      }
+    }
+      
+    var errBack = function(e) {
+      console.log('Reeeejected!', e);
+    };
+    
+    // Put video listeners into place
+    if(navigator.getUserMedia) { // Standard
+            navigator.getUserMedia(videoObj, function(stream) {
+                    video.src = stream;
+                    video.play();
+                    myStream = stream;
+            }, errBack);
+    } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+            navigator.webkitGetUserMedia(videoObj, function(stream){
+                    video.src = window.URL.createObjectURL(stream);
+                    video.play();
+                    myStream = stream;
+            }, errBack);
+    }
+    else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+            navigator.mozGetUserMedia(videoObj, function(stream){
+                    video.src = window.URL.createObjectURL(stream);
+                    video.play();
+                    myStream = stream;
+            }, errBack);
+    };
+</script>
+            
+          <button ng-click="takepic()">Take Pic</button>         
+          <br/>
+          
+         <video id="video" width="640" height="480" autoplay></video>
+         <canvas id="canvas" width="640" height="480"></canvas>
+           <script>
+             var video =  document.getElementById("video"),  canvas = document.getElementById("canvas"), context = canvas.getContext("2d")
+             var myStream = null;
+             
+           </script>
+        </div>
+</div>
