@@ -29,13 +29,63 @@
       $scope.theMemories = memoriesFactory.getMemories($scope.memory?$scope.memory:$scope.thisEvent);
 
       $scope.theMemories.$loaded().then(function(data){
-        // console.log("ahh, the memories!",$scope.theMemories, data);
+        console.log("-------- ahh, the memories!",$scope.theMemories, data);
       })
 
       $scope.startEvents = memoriesFactory.getMemoriesStart($scope.memory)
-      $scope.startEvents.$loaded().then(function(data){ $scope.startEvents = (data[0].timestamp) });
-      $scope.endEvents = memoriesFactory.getMemoriesEnd($scope.memory);
-      $scope.endEvents.$loaded().then(function(data){ $scope.endEvents  = (data[0].timestamp) });
+      $scope.startEvents.$loaded().then(function(data){
+        $scope.startEvents = (data[0].timestamp);
+        $scope.endEvents = memoriesFactory.getMemoriesEnd($scope.memory);
+        
+        $scope.endEvents.$loaded().then(function(dataE){
+          $scope.endEvents  = (dataE[0].timestamp);
+          // ok got event start and end
+          //alert('end' + $scope.endEvents);
+          //alert('start' + $scope.startEvents);
+          var xStart = new Date(data[0].timestamp);
+          var xEnd = new Date(dataE[0].timestamp);
+          xStart.setMinutes(0);
+          xEnd.setHours(xEnd.getHours() + Math.floor(xEnd.getMinutes()/60));
+          var x = xEnd.getTime() - xStart.getTime();
+
+          var numOfHrs = x / (1000*60*60);
+          var startHour = (new Date(data[0].timestamp)).getHours();
+          //alert('start hour: '+startHour);
+          alert(Math.ceil(numOfHrs)+"-"+numOfHrs);
+          var hours = [];
+          var lastdate = new Date(data[0].timestamp);
+          // remove minutes
+          lastdate.setMinutes(0); 
+          for(var i=0; i< Math.ceil(numOfHrs); i++){
+            var s = (new Date(lastdate.getTime())).getTime();
+            lastdate.setHours(lastdate.getHours()+1);
+            //alert(lastdate.getMinutes());
+            // retrieve data
+            var e = (new Date(lastdate.getTime())).getTime();
+            var p = memoriesFactory.getMemoriesWithTime($scope.memory, s, e);
+            p.$loaded().then(function(dataTime) {
+              console.log(dataTime);
+              var sDate = new Date( dataTime[0].timestamp);
+              var eDate = new Date( dataTime[0].timestamp);
+              sDate.setMinutes(0);
+              eDate.setMinutes(0);
+              eDate.setHours(eDate.getHours() + 1);
+              
+              hours.push({sHour: sDate.getTime(), eHour: eDate.getTime() , 'memories': dataTime });
+              $scope.hours = hours;
+              console.log($scope.hours);
+            });
+            
+          }
+          
+          
+          
+          //alert((24-15.5) * (numOfHrs/24));
+        });
+      });
+      
+
+      
       console.log("times" , $scope.startEvents, $scope.endEvents);
 
       /**

@@ -28,14 +28,17 @@ angular.module('services', [])
                 m.blobFile = theblob;
                 $firebase(fr.child(eventId)).$asArray().$add(m);
             },
+            getMemoriesWithTime: function(eventId, s, e){
+                return $firebase(fr.child(eventId).orderByChild('timestamp').startAt(s).endAt(e)).$asArray();
+            },
             getMemories: function(eventId){
-                return $firebase(fr.child(eventId).orderByChild('eTime')).$asArray();
+                return $firebase(fr.child(eventId).orderByChild('timestamp')).$asArray();
             },
             getMemoriesStart: function(eventId){
-                return $firebase(fr.child(eventId).orderByChild('eTime').limitToFirst(1)).$asArray();
+                return $firebase(fr.child(eventId).orderByChild('timestamp').limitToFirst(1)).$asArray();
             },
             getMemoriesEnd: function(eventId){
-                 return $firebase(fr.child(eventId).orderByChild('eTime').limitToLast(1)).$asArray();
+                 return $firebase(fr.child(eventId).orderByChild('timestamp').limitToLast(1)).$asArray();
             }
 
         }
