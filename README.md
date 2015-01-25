@@ -1,6 +1,6 @@
 # ss15-wahoo
 
-# Memoreez 
+# Memoreez
 
 =============
 ## About
@@ -32,6 +32,6 @@ We have a list of functionality we'd like to add including (but not limited too)
 
 #### Created by
 *	[James Schimmoeller](https://twitter.com/godsaxle)
-*	[Frank Cash](https://twitter.com/FrankCash2)
+*	[Frank Cash](https://github.com/frankcash)
 *	[Brian Hinton](https://twitter.com/briannhinton)
 *	[Chris Castillo](https://twitter.com/_senorcastillo)
