@@ -117,20 +117,18 @@
   app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams',
                                function($scope, $location, eventsFactory, $route, $routeParams){
     console.log('ROUTE INFO:', $route, $routeParams);
-    /**
-    *@summary allows flow control of `tab`/`menu`
-    */
-    this.view = 1;
-
-    this.isSet = function(checkTab) {
-      return this.view === checkTab;
-    };
-
-    this.setView = function(setTab) {
-      this.view = setTab;
-    };
-
-
+    this.$route = $route;
+    this.$location = $location;
+    console.log("route", $route);
+    console.log("location", $location.path());
+    if($location.path() === "/home"){
+      console.log($location.path());
+      $scope.showHome = false;
+    }else{
+      console.log("not home");
+      $scope.showHome=true;
+    }
+    console.log("showHome", $scope.showHome);
 
     /**
     *@summary will use ng-click to submit form, gets info from ng-models
