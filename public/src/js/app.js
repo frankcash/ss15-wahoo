@@ -8,7 +8,7 @@
                 when('/event/:eventId', {templateUrl: 'src/templates/specific-event.html'}).
                 when('/register/:eventId', {templateUrl: 'src/templates/register.html'}).
                 when('/share/:eventId/:guestId', {templateUrl: 'src/templates/share-memory.html'}).
-                when('/create', {templateUrl: 'src/templates/create-event.html',   controller: 'IndexCtrl'}).
+                when('/create/:eventName?', {templateUrl: 'src/templates/create-event.html',   controller: 'IndexCtrl'}).
                 when('/memory/:eventId/:guestId', {templateUrl: 'src/templates/my-memories.html',   controller: 'MemoriesCtrl'}).
                 when('/about', {templateUrl: 'src/templates/about.html',   controller: 'IndexCtrl'})
                 .otherwise({redirectTo: '/home'});
@@ -228,7 +228,13 @@
     console.log("showHome", $scope.showHome);
     
     //jes home page stuff
-    $scope.eventName = 'Party';
+    !$scope.eventName && $routeParams.eventName && ($scope.eventName = $routeParams.eventName);
+    !$scope.eventName && ($scope.eventName = 'Party');
+    
+    $scope.createEvent = function(){
+      console.log('-------', $scope.eventName)
+      $location.path('/create/'+$scope.eventName);
+    }
 
     //end
 
