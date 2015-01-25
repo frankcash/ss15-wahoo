@@ -212,7 +212,7 @@
           // Other browsers will fall back to image/png.
           //document.querySelector('img').src = canvas.toDataURL('image/webp');
           //TODO jes fix this
-          $scope.thePic = $scope.canvas.toDataURL('image/webp')
+          $scope.thePic = $scope.canvas.toDataURL('image/png')
           //memoriesFactory.addMemory($scope.thisEvent, $scope.thisGuestId, $scope.canvas.toDataURL('image/webp'),'image','this is my awesome', false);
           //memoriesFactory.addMemory(eID, gID, thePic,'image','this is my awesome 2', false);
           //$scope.uploadPic(canvas.toDataURL('image/webp'))
