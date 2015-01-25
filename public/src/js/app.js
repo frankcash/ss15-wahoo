@@ -76,6 +76,19 @@
       $location.path('/event/'+$scope.thisEvent);
     }
     
+    $scope.checkIn = function(){
+      
+      if ($scope.name && $scope.email) {
+        console.log('checking in');
+        //id, guestName, guestEmail, guestPhone, guestAddress, guestMessage, guestImage
+        var g = guestFactory.addGuest($scope.thisEvent, $scope.name, $scope.email, $scope.phone, $scope.address, '','');
+        g.then(function(data){
+          var gId = data.key();
+          $location.path('/share/'+$scope.thisEvent+'/'+gId);
+        });
+      }
+      //$location.path('/event/'+$scope.thisEvent);
+    }
       // this.event
       $scope.hasMedia= function() {
         console.log('herer');
