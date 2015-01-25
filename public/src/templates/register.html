@@ -1,35 +1,51 @@
+
 <div class="check-in">
-  <div class="camera-container" style="background-color: #fafafa; width: 100%; height: 300px; text-align: center;">
-    <div class="camera" style="width: 50%; height: 100%; background-color: black; margin: 0 auto;"></div>
-  </div>
-  <div class="w-container">
-    <div class="w-form">
-      <form class="guest-form-wrapper" id="picture-form" name="picture-form" data-name="Picture Form">
-        <div class="w-clearfix form-group">
-          <input class="w-button picture" type="submit" value="Upload Picture" data-wait="Please wait...">
-          <input class="w-button picture" type="submit" value="Take Picture" data-wait="Please wait...">
+    <div class="w-container">
+      <div class="w-form">
+        <form class="guest-form-wrapper" id="register-form" name="register-form" data-name="Register Form">
+          <h1 class="check-in-header">CHECK&nbsp;IN</h1>
+          <div class="me-card">Have Me Card?</div>
+          <div class="form-group">
+            <input class="w-input guest-form-input" id="name-2" type="text" name="name-2" data-name="Name 2" required="required" autofocus="autofocus">
+            <label class="guest-form-label" for="name">NAME</label>
+          </div>
+          <div class="form-group">
+            <input class="w-input guest-form-input" id="Email" type="text" name="Email" data-name="Email" required="required">
+            <label class="guest-form-label" for="email">EMAIL</label>
+          </div>
+          <div class="form-group">
+            <input class="w-input guest-form-input" id="Phone" type="text" name="Phone" data-name="Phone">
+            <label class="guest-form-label" for="email">PHONE</label>
+          </div>
+          <div class="form-group">
+            <input class="w-input guest-form-input" id="Phone-3" type="text" name="Phone-3" data-name="Phone 3">
+            <label class="guest-form-label" for="address">ADDRESS</label>
+          </div>
+          <div class="w-clearfix form-group city">
+            <div class="city-group">
+              <input class="w-input guest-form-input" id="State" type="text" name="State" data-name="State">
+              <label class="guest-form-label" for="city">CITY</label>
+            </div>
+            <div class="zip-group">
+              <input class="w-input guest-form-input" id="Zip" type="text" name="Zip" data-name="Zip">
+              <label class="guest-form-label" for="zip">ZIP</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <input class="w-input guest-form-input" id="State" type="text" name="State" data-name="State">
+            <label class="guest-form-label" for="state">STATE</label>
+          </div>
+          <div class="w-clearfix form-group">
+            <input class="w-button submit" type="submit" value="SUBMIT" data-wait="Please wait...">
+            <input class="w-button cancel" type="submit" value="CANCEL" data-wait="Please wait...">
+          </div>
+        </form>
+        <div class="w-form-done">
+          <p>Thank you! Your submission has been received!</p>
         </div>
-      </form>
+        <div class="w-form-fail">
+          <p>Oops! Something went wrong while submitting the form :(</p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="w-container">
-    <div class="w-form">
-      <form class="guest-form-wrapper" id="message-form" name="message-form" data-name="Message Form">
-        <div class="form-group">
-          <input class="w-input guest-form-input" id="Message" type="text" name="Message" data-name="Message">
-          <label class="guest-form-label" for="name-2">YOUR MESSAGE</label>
-        </div>
-        <div class="w-clearfix form-group">
-          <input class="w-button submit" type="submit" value="SUBMIT" data-wait="Please wait...">
-          <input class="w-button cancel" type="submit" value="CANCEL" data-wait="Please wait...">
-        </div>
-      </form>
-      <div class="w-form-done">
-        <p>Thank you! Your submission has been received!</p>
-      </div>
-      <div class="w-form-fail">
-        <p>Oops! Something went wrong while submitting the form :(</p>
-      </div>
-    </div>
-  </div>
-</div>
