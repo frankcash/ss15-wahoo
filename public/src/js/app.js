@@ -51,7 +51,7 @@
           var numOfHrs = x / (1000*60*60);
           var startHour = (new Date(data[0].timestamp)).getHours();
           //alert('start hour: '+startHour);
-          alert(Math.ceil(numOfHrs)+"-"+numOfHrs);
+          //alert(Math.ceil(numOfHrs)+"-"+numOfHrs);
           var hours = [];
           var lastdate = new Date(data[0].timestamp);
           // remove minutes
