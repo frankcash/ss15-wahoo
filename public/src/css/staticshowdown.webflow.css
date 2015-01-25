@@ -246,8 +246,6 @@ p {
   font-size: 24px;
   text-align: center;
 }
-
-
 .input:focus {
   border-bottom-color: #F3CF4E;
 }
