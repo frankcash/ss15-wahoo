@@ -1,7 +1,3 @@
-<script type="text/javascript">
-$('.hastip').tooltipsy();
-</script>
-
 <div ng-controller="MemoriesCtrl">
   <div class="w-row memory-row" data-ix="memory-row-fade-in" ng-repeat="h in hours">
     <div class="w-col w-col-2 timeline-time">
@@ -15,7 +11,7 @@ $('.hastip').tooltipsy();
       <ul class="w-clearfix memory-list">
         <li class="memory-container" ng-repeat="things in h.memories">
           <div class="memory-timestamp">{{things.timestamp| date : 'shortTime' }}</div>
-          <img class="memory-media hastip" height="100px" width="100px" ng-src="{{things.blobFile}}" alt="image-placeholder.svg" title="{{things.message}}">
+          <img class="memory-media hastip"  onmouseenter="tooltip(this)" height="100px" width="100px" ng-src="{{things.blobFile}}" alt="image-placeholder.svg" title="{{things.message}}">
           <div class="memory-guest">{{resolveGuest(things.guestId)}} </div>
         </li>
       </ul>

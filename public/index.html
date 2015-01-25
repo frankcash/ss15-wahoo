@@ -38,7 +38,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="./src/img/small-favicon.png">
     <link rel="apple-touch-icon" href="./src/img/large-icon.png">
 
-
+<script>
+  function tooltip(element) {
+    console.log('********* tooltip', $(element));
+    $(element).tooltipsy();
+  }
+</script>
 
   </head>
   <body ng-app="memoreez">
@@ -76,7 +81,7 @@
   </footer>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script type="text/javascript" src="./src/js/tooltipsy.js"></script>
+  <script type="text/javascript" src="./src/js/tooltipsy.min.js"></script>
 
     <!-- <script type="text/javascript" src="./src/js/webflow.js"></script>-->
 
