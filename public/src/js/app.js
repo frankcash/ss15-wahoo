@@ -36,7 +36,7 @@
       $scope.startEvents.$loaded().then(function(data){
         $scope.startEvents = (data[0].timestamp);
         $scope.endEvents = memoriesFactory.getMemoriesEnd($scope.memory);
-        
+
         $scope.endEvents.$loaded().then(function(dataE){
           $scope.endEvents  = (dataE[0].timestamp);
           // ok got event start and end
@@ -55,7 +55,7 @@
           var hours = [];
           var lastdate = new Date(data[0].timestamp);
           // remove minutes
-          lastdate.setMinutes(0); 
+          lastdate.setMinutes(0);
           for(var i=0; i< Math.ceil(numOfHrs); i++){
             var s = (new Date(lastdate.getTime())).getTime();
             lastdate.setHours(lastdate.getHours()+1);
@@ -65,27 +65,30 @@
             var p = memoriesFactory.getMemoriesWithTime($scope.memory, s, e);
             p.$loaded().then(function(dataTime) {
               console.log(dataTime);
-              var sDate = new Date( dataTime[0].timestamp);
-              var eDate = new Date( dataTime[0].timestamp);
-              sDate.setMinutes(0);
-              eDate.setMinutes(0);
-              eDate.setHours(eDate.getHours() + 1);
-              
-              hours.push({sHour: sDate.getTime(), eHour: eDate.getTime() , 'memories': dataTime });
-              $scope.hours = hours;
-              console.log($scope.hours);
+              if(dataTime.length>0){
+                var sDate = new Date( dataTime[0].timestamp);
+                var eDate = new Date( dataTime[0].timestamp);
+                sDate.setMinutes(0);
+                eDate.setMinutes(0);
+                eDate.setHours(eDate.getHours() + 1);
+
+                hours.push({sHour: sDate.getTime(), eHour: eDate.getTime() , 'memories': dataTime });
+                $scope.hours = hours;
+                console.log($scope.hours);
+              }
+
             });
-            
+
           }
-          
-          
-          
+
+
+
           //alert((24-15.5) * (numOfHrs/24));
         });
       });
-      
 
-      
+
+
       console.log("times" , $scope.startEvents, $scope.endEvents);
 
       /**
