@@ -32,10 +32,10 @@ angular.module('services', [])
                 return $firebase(fr.child(eventId).orderByChild('eTime')).$asArray();
             },
             getMemoriesStart: function(eventId){
-                return $firebase(fr.orderByChild('eTime').limitToFirst(1).child(eventId)).$asArray();
+                return $firebase(fr.child(eventId).orderByChild('eTime').limitToFirst(1)).$asArray();
             },
             getMemoriesEnd: function(eventId){
-                 return $firebase(fr.orderByChild('eTime').limitToLast(1).child(eventId)).$asArray();
+                 return $firebase(fr.child(eventId).orderByChild('eTime').limitToLast(1)).$asArray();
             }
 
         }
