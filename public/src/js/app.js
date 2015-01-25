@@ -20,6 +20,10 @@
       $scope.thisEvent = this.params.eventId;
       $scope.thisGuestId = this.params.guestId;
 
+      /**
+      *@param $scope.memory is used when directive is loaded as a component
+      *@param $scope.thisEvent is used when directive is loaded as a view
+      */
       $scope.guestList = guestFactory.getGuests($scope.memory?$scope.memory:$scope.thisEvent );
 
       $scope.theMemories = memoriesFactory.getMemories($scope.memory?$scope.memory:$scope.thisEvent);
@@ -80,12 +84,10 @@
       };
 
     $scope.cancelCheckIn = function(){
-      console.log('asdfsafasfsdaffasd');
       $location.path('/event/'+$scope.thisEvent);
     };
 
     $scope.shareCancel = function(){
-      //console.log('asdfsafasfsdaffasd');
       $location.path('/memory/'+$scope.thisEvent + '/'+$scope.thisGuestId);
     };
      $scope.share = function(){
