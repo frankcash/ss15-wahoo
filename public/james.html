@@ -13,10 +13,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
   <!-- We include the Transloadit jQuery plugin here -->
-  <script src="https://assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>    
+  <script src="https://assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
         <script>
           var videoObj = { "video": true };
-          
+
             function takepic() {
               console.log('aaaa');
               if (myStream) {
@@ -29,10 +29,10 @@
                 console.log(canvas.toDataURL('image/webp'));
               }
             }
-          
-          
-          
-          
+
+
+
+
   var errBack = function(e) {
     console.log('Reeeejected!', e);
   };
@@ -66,25 +66,23 @@
       <img id="myimg" src=""></img>
       <!-- change accept to video to take video -->
       <input id="theFile" type="file" accept="image/*" file-model="myFile" onchange="angular.element(this).scope().uploadFile(this)">
-        
+
         <!-- if no getUserMedia -->
         <div ng-show="isActive" ng-init="isActive=hasMedia()">
-          <a href="#" onclick="javascript:takepic()"  >Take Pic</a>        
+          <a href="#" onclick="javascript:takepic()"  >Take Pic</a>
           <br/>
-          
+
          <video id="video" width="640" height="480" autoplay></video>
          <canvas id="canvas" width="640" height="480"></canvas>
            <script>
              var video =  document.getElementById("video"),  canvas = document.getElementById("canvas"), context = canvas.getContext("2d")
              var myStream = null;
-             
+
            </script>
     </div>
 
-    
-    
+
+
     </div>
   </body>
 </html>
-
-
