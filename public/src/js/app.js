@@ -170,7 +170,7 @@
     //console.log();
     console.log($scope.list);
     //
-    //var eID = '-JgU3UFT391NjFMzisGI', gID = '-JgUEMUe_GrzkXr4ShYu';
+    var eID = '-JgU3UFT391NjFMzisGI', gID = '-JgUEMUe_GrzkXr4ShYu';
     //var x = guestFactory.getGuests(eID);
     //
     //
