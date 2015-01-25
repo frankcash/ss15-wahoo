@@ -209,8 +209,8 @@
     })
   }]);
 
-  app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams',
-                               function($scope, $location, eventsFactory, $route, $routeParams){
+  app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams','guestFactory', 
+                               function($scope, $location, eventsFactory, $route, $routeParams, guestFactory){
     console.log('ROUTE INFO:', $route, $routeParams);
     this.$route = $route;
     this.$location = $location;
@@ -245,8 +245,20 @@
         console.log("");
       }else{
         console.log($scope.eventName, $scope.orgName, $scope.orgEmail);
-        eventsFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
-
+        var p = eventsFactory.addEvent($scope.eventName, $scope.orgName, $scope.orgEmail);
+        //jes redirect
+        p.then(function(data){
+          console.log('-----', data, data.key());
+          var eventId = data.key();
+          var g = guestFactory.addGuest(eventId, $scope.orgName, $scope.orgEmail, '', '', 'Organizor Created Event', '')
+          g.then(function(gData){
+            var guestId = gData.key();
+            $location.path('/share/'+eventId+'/'+guestId);
+          });
+          
+          
+        })
+        
       }
 
 
