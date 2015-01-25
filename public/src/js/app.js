@@ -57,13 +57,13 @@
     //console.log();
     console.log($scope.list);
 
-    var eID = '-JgS5MEyNLpmZ0zJRYxb', gID = '-JgRp0GYPchfJnjtFpTD';
+    var eID = '-JgU56-kcWG046RACxM4', gID = '-JgRp0GYPchfJnjtFpTD';
     var x = guestFactory.getGuests(eID);
 
 
     x.$loaded().then(function(){
       console.log('Guest has ' + x.length);
-      if (x.length == 0 ) {
+      if (x.length < 5 ) {
         guestFactory.addGuest(eID, 'me', 'me@me.com', '111', '1 main', 'msg', '').then(function(data) {
           console.log('.... data: ', data, data.key());
           gID = data.key();
@@ -117,20 +117,20 @@
   app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams',
                                function($scope, $location, eventsFactory, $route, $routeParams){
     console.log('ROUTE INFO:', $route, $routeParams);
-    /**
-    *@summary allows flow control of `tab`/`menu`
-    */
-    this.view = 1;
-
-    this.isSet = function(checkTab) {
-      return this.view === checkTab;
-    };
-
-    this.setView = function(setTab) {
-      this.view = setTab;
-    };
-
-
+    this.$route = $route;
+    this.$location = $location;
+    console.log("route", $route);
+    console.log("location", $location.path());
+    if($location.path() === "/home"){
+      console.log($location.path());
+      $scope.showHome = false;
+      //document.getElementById("navbar1").style.display="none";
+    }else{
+      console.log("not home");
+      $scope.showHome=true;
+      //document.getElementById("navbar1").style.display="block";
+    }
+    console.log("showHome", $scope.showHome);
 
     /**
     *@summary will use ng-click to submit form, gets info from ng-models
