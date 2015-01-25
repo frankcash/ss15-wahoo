@@ -414,6 +414,7 @@ p {
   background-color: white;
 }
 .memory-list {
+  border-radius: 3px;
   padding-top: 20px;
   padding-bottom: 0px;
   padding-left: 0px;
