@@ -117,7 +117,8 @@
           // console.log(obj);
           if(obj.$id===guestId){
             // console.log(obj.name);
-            result = (obj.name)
+            result = (obj.name);
+            return result;
           }
         });
         return result;
