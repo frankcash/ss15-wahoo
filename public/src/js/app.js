@@ -16,30 +16,35 @@
 
   app.controller('MemoriesCtrl', ['$scope', 'eventsFactory', 'guestFactory', 'memoriesFactory',
     function($scope, eventsFactory, guestFactory, memoriesFactory){
-      console.log('we are being fired');
+
       $scope.guestList = guestFactory.getGuests($scope.memory);
 
       $scope.theMemories = memoriesFactory.getMemories($scope.memory);
       $scope.theMemories.$loaded().then(function(data){
-        console.log("ahh, the memories!",$scope.theMemories, data);
-
+        // console.log("ahh, the memories!",$scope.theMemories, data);
       })
 
 
-      console.log("scope.memory",$scope.memory);
-
+      /**
+      *@summary gets all memories for an event
+      *@param eventId needs to be passed the event id
+      */
       $scope.resolveMemories = function(eventId){
-        console.log("eId", eventId);
         memoriesFactory.getMemories(eventId);
 
       }
 
+      /**
+      *@summary takes in guestId and returns the guest name
+      *@param guestId the guest's Id
+      *@param $scope.guestList firebase list of all guests
+      */
       $scope.resolveGuest = function(guestId){
         angular.forEach($scope.guestList, function(obj, key){
-          console.log(obj);
+          // console.log(obj);
           if(obj.$id===guestId){
-            console.log(obj.email);
-            result = (obj.email)
+            // console.log(obj.name);
+            result = (obj.name)
           }
         });
         return result;
@@ -65,7 +70,26 @@
       $scope.errBack = function(e) {
         console.log('Reeeejected!', e);
       };
-
+    
+    $scope.cancelCheckIn = function(){
+      console.log('asdfsafasfsdaffasd');
+      $location.path('/event/'+$scope.thisEvent);
+    };
+    
+    $scope.checkIn = function(){
+      
+      if ($scope.name && $scope.email) {
+        console.log('checking in');
+        //id, guestName, guestEmail, guestPhone, guestAddress, guestMessage, guestImage
+        var g = guestFactory.addGuest($scope.thisEvent, $scope.name, $scope.email?$scope.email:'' , $scope.phone ? scope.phone : '', $scope.address ? $scope.address : '', '','');
+        g.then(function(data){
+          var gId = data.key();
+          $location.path('/share/'+$scope.thisEvent+'/'+gId);
+        });
+      }
+      //$location.path('/event/'+$scope.thisEvent);
+    };
+    
       // this.event
       $scope.hasMedia= function() {
         console.log('herer');
@@ -101,11 +125,10 @@
 
         }
 
-
         return breturn;
       };
 
-      $scope.takepic =     function takepic() {
+      $scope.takepic = function takepic() {
         console.log('aaaa');
         if ($scope.myStream) {
           //console.log(myStream);
@@ -163,26 +186,27 @@
       $location.path(hash);
     }
 
+
     $scope.list = eventsFactory.getEvents();
     // get a specific event
     //console.log(eventFactory.getEvent('-JgPDtrYrbLaMcZ61JkH'));
     //eventFactory.delEvent('-JgPTVAXNBh42iNSVoTF');
     //console.log();
     console.log($scope.list);
-
+    //
     var eID = '-JgU3UFT391NjFMzisGI', gID = '-JgUEMUe_GrzkXr4ShYu';
-    var x = guestFactory.getGuests(eID);
-
-
-    x.$loaded().then(function(){
-      console.log('Guest has ' + x.length);
-      if (x.length < 5 ) {
-        guestFactory.addGuest(eID, 'me', 'me@me.com', '111', '1 main', 'msg', '').then(function(data) {
-          console.log('.... data: ', data, data.key());
-          gID = data.key();
-        });
-      }
-    });
+    //var x = guestFactory.getGuests(eID);
+    //
+    //
+    //x.$loaded().then(function(){
+    //  console.log('Guest has ' + x.length);
+    //  if (x.length < 5 ) {
+    //    guestFactory.addGuest(eID, 'me', 'me@me.com', '111', '1 main', 'msg', '').then(function(data) {
+    //      console.log('.... data: ', data, data.key());
+    //      gID = data.key();
+    //    });
+    //  }
+    //});
 
 
     $scope.hasMedia= function() {
@@ -227,7 +251,7 @@
     })
   }]);
 
-  app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams','guestFactory', 
+  app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams','guestFactory',
                                function($scope, $location, eventsFactory, $route, $routeParams, guestFactory){
     console.log('ROUTE INFO:', $route, $routeParams);
     this.$route = $route;
@@ -244,18 +268,23 @@
       //document.getElementById("navbar1").style.display="block";
     }
     console.log("showHome", $scope.showHome);
-    
+
     //jes home page stuff
     !$scope.eventName && $routeParams.eventName && ($scope.eventName = $routeParams.eventName);
     !$scope.eventName && ($scope.eventName = 'Party');
-    
+
+    /**
+    *@summary will click and move to createEvent route with the event's name
+    */
     $scope.createEvent = function(){
-      console.log('-------', $scope.eventName)
       $location.path('/create/'+$scope.eventName);
     }
 
     //end
 
+    $scope.cancel = function(){
+      $location.path('/home');
+    };
     /**
     *@summary will use ng-click to submit form, gets info from ng-models
     *@param eventName
@@ -279,10 +308,10 @@
             var guestId = gData.key();
             $location.path('/share/'+eventId+'/'+guestId);
           });
-          
-          
+
+
         })
-        
+
       }
 
 
@@ -290,6 +319,7 @@
 
 
   }]);
+
   app.directive('myMemories', function(){
     return{
       restrict: 'E',

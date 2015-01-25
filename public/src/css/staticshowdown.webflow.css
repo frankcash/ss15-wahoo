@@ -290,6 +290,7 @@ p {
 .submit-button:hover {
   background-color: rgba(255, 255, 255, 0.49);
   color: white;
+  cursor: pointer;
 }
 
 /* picture button */
@@ -366,7 +367,7 @@ p {
   text-align: left;
 }
 .timeline {
-  height: auto;
+  min-height: 500px;
   background-image: url('/src/img/line.svg');
   background-position: 0px 50%;
   background-repeat: repeat-y;
@@ -687,6 +688,7 @@ p {
 }
 .events-list-link {
   margin-top: 31px;
+  float:right;
   margin-right: 20px;
 }
 html.w-mod-js *[data-ix="new-interaction"] {
