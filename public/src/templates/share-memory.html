@@ -1,5 +1,38 @@
 <div class="check-in" ng-controller="SpecificEventCtrl">
-  <div class="camera-container" style="background-color: #fafafa; width: 100%; height: 300px; text-align: center;">
+
+  <div class="section timeline-wrapper">
+
+    <!-- timeline header -->
+    <div class="timeline-header">
+      <div class="w-row header-columns">
+        <div class="w-col w-col-6 memory-header-column">
+          <div class="event-title">
+            <h2 class="event-name">{{eventInfo.eventName}}</h2>
+            <div class="check-in-header-wrap"><img class="checkmark-icon" src="src/img/bluecheckmark.svg" alt="54c3e6c72d5eaa62179003d3_bluecheckmark.svg">
+              <div class="guests-checked-in">{{guestInfo.length}} Guests Checked In</div>
+            </div>
+          </div>
+        </div>
+        <div class="w-col w-col-6 w-clearfix share-column">
+          <div class="w-clearfix link-icon-wrap">
+            <img class="link-icon" src="src/img/link.svg" alt="54c3e8a22d5eaa6217900413_link.svg">
+            <a ng-href="index.html#/event/{{thisEvent}}">
+              <div class="share-header-text">Link</div>
+            </a>
+          </div>
+          <div class="w-clearfix share-icon-wrap"><img class="link-icon" src="src/img/share.svg" alt="54c3e9542d5eaa6217900448_share.svg">
+            <div class="share-header-text">Share</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="camera-container" style="background-color: transparent; width: 100%; height: 300px; text-align: center;">
+    <h1></h1>
+
     <div class="camera" style="width: 50%; height: 100%; margin: 0 auto;">
 
 
@@ -59,11 +92,12 @@
   </div> <!-- /camera-container -->
   <div class="w-container">
     <div class="w-form">
-      <form class="guest-form-wrapper" id="picture-form" name="picture-form" data-name="Picture Form">
+      <form class="guest-form-wrapper" id="picture-form" name="picture-form" data-name="Picture Form" style="margin-bottom: 50px;">
         <div class="w-clearfix form-group">
           <div style="text-align: center;"><img id="myimg" src=""></div>
-          <button class="w-button cancel" type="submit" value="Take Picture" ng-click="takepic()" style="width: 100%; display: block;">Take Picture</button>
-          <input class="w-button cancel" id="theFile" type="file" accept="image/*" file-model="myFile" onchange="angular.element(this).scope().uploadFile(this)" style="width: 100%; display: block;">
+          <p>Image capture only supported in Firefox, and Chrome. Upload an image if using a different browser</p>
+          <button class="w-button cancel" type="submit" value="Take Picture" ng-click="takepic()" style="width: 100%; display: block; margin-left: 0;">Take Picture</button>
+          <input class="w-button cancel" id="theFile" type="file" accept="image/*" file-model="myFile" onchange="angular.element(this).scope().uploadFile(this)" style="width: 100%; display: block; margin-left: 0;">
 
         </div>
       </form>

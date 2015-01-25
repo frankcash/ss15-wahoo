@@ -340,7 +340,6 @@ p {
 .event-title {
   width: 100%;
   height: 100%;
-  margin-bottom: 40px;
   float: left;
   border-right: 2px none #1a1a1a;
   color: #5c8ed4;
@@ -949,8 +948,9 @@ html.w-mod-js.w-mod-no-ios *[data-ix="plop-3"] {
   .share-column {
     position: relative;
     display: inline-block;
-    margin-top: -25px;
+    margin-top: 25px;
     padding-bottom: 25px;
+    padding-left: 100px;
     text-align: center;
   }
   .memory-header-column {
@@ -1123,4 +1123,14 @@ html.w-mod-js.w-mod-no-ios *[data-ix="plop-3"] {
     color: #303030;
     background-color: #f5f5b5;
     border: 1px solid #deca7e;
+  }
+
+  .memory-button {
+    width: 48%;
+    margin-top: 30px;
+    border-radius: 3px;
+    background-color: #cdcedc;
+    font-family:'Varela Round', sans-serif;
+    color: #2a2d48;
+    font-size: 17px;
   }
