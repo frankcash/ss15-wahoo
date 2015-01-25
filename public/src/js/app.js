@@ -40,55 +40,59 @@
       *@name $scope.endEvents a promise from firebase
       */
       $scope.startEvents.$loaded().then(function(data){
+         if (data && data[0] && data[0].timestamp) {
         $scope.startEvents = (data[0].timestamp);
         $scope.endEvents = memoriesFactory.getMemoriesEnd($scope.memory);
 
 
         $scope.endEvents.$loaded().then(function(dataE){
-          $scope.endEvents  = (dataE[0].timestamp);
-          // ok got event start and end
-          //alert('end' + $scope.endEvents);
-          //alert('start' + $scope.startEvents);
-          var xStart = new Date(data[0].timestamp);
-          var xEnd = new Date(dataE[0].timestamp);
-          xStart.setMinutes(0);
-          xEnd.setHours(xEnd.getHours() + Math.floor(xEnd.getMinutes()/60));
-          var x = xEnd.getTime() - xStart.getTime();
-
-          var numOfHrs = x / (1000*60*60);
-          var startHour = (new Date(data[0].timestamp)).getHours();
-          //alert('start hour: '+startHour);
-          //alert(Math.ceil(numOfHrs)+"-"+numOfHrs);
-          var hours = [];
-          var lastdate = new Date(data[0].timestamp);
-          // remove minutes
-          lastdate.setMinutes(0);
-          for(var i=0; i< Math.ceil(numOfHrs); i++){
-            var s = (new Date(lastdate.getTime())).getTime();
-            lastdate.setHours(lastdate.getHours()+1);
-            //alert(lastdate.getMinutes());
-            // retrieve data
-            var e = (new Date(lastdate.getTime())).getTime();
-            var p = memoriesFactory.getMemoriesWithTime($scope.memory, s, e);
-            p.$loaded().then(function(dataTime) {
-              console.log(dataTime);
-              if(dataTime.length>0){
-                var sDate = new Date( dataTime[0].timestamp);
-                var eDate = new Date( dataTime[0].timestamp);
-                sDate.setMinutes(0);
-                eDate.setMinutes(0);
-                eDate.setHours(eDate.getHours() + 1);
-
-                hours.push({sHour: sDate.getTime(), eHour: eDate.getTime() , 'memories': dataTime });
-                $scope.hours = hours;
-                console.log($scope.hours);
-              }
-
-            });
-
-          }
+         
+            //code
+            $scope.endEvents  = (dataE[0].timestamp);
+            // ok got event start and end
+            //alert('end' + $scope.endEvents);
+            //alert('start' + $scope.startEvents);
+            var xStart = new Date(data[0].timestamp);
+            var xEnd = new Date(dataE[0].timestamp);
+            xStart.setMinutes(0);
+            xEnd.setHours(xEnd.getHours() + Math.floor(xEnd.getMinutes()/60));
+            var x = xEnd.getTime() - xStart.getTime();
+  
+            var numOfHrs = x / (1000*60*60);
+            var startHour = (new Date(data[0].timestamp)).getHours();
+            //alert('start hour: '+startHour);
+            //alert(Math.ceil(numOfHrs)+"-"+numOfHrs);
+            var hours = [];
+            var lastdate = new Date(data[0].timestamp);
+            // remove minutes
+            lastdate.setMinutes(0);
+            for(var i=0; i< Math.ceil(numOfHrs); i++){
+              var s = (new Date(lastdate.getTime())).getTime();
+              lastdate.setHours(lastdate.getHours()+1);
+              //alert(lastdate.getMinutes());
+              // retrieve data
+              var e = (new Date(lastdate.getTime())).getTime();
+              var p = memoriesFactory.getMemoriesWithTime($scope.memory, s, e);
+              p.$loaded().then(function(dataTime) {
+                console.log(dataTime);
+                if(dataTime.length>0){
+                  var sDate = new Date( dataTime[0].timestamp);
+                  var eDate = new Date( dataTime[0].timestamp);
+                  sDate.setMinutes(0);
+                  eDate.setMinutes(0);
+                  eDate.setHours(eDate.getHours() + 1);
+  
+                  hours.push({sHour: sDate.getTime(), eHour: eDate.getTime() , 'memories': dataTime });
+                  $scope.hours = hours;
+                  console.log($scope.hours);
+                }
+  
+              });
+  
+            }
 
         });
+      }
       });
 
 
