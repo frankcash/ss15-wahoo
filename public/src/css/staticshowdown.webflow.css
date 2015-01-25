@@ -588,6 +588,7 @@ p {
 }
 .events-list-item:hover {
   background-color: #fafafa;
+  cursor: pointer;
 }
 .staticshowdown-reference {
   margin-top: 0px;
