@@ -38,24 +38,33 @@
     <link rel="stylesheet" href="./src/css/main.css">
     <link rel="shortcut icon" type="image/x-icon" href="./src/img/small-favicon.png">
     <link rel="apple-touch-icon" href="./src/img/large-icon.png">
-
+<script>
+  var tooltipElements=[];
+</script>
 <script>
   function tooltip(element) {
-    $(element).tooltipsy({
-      css: {
-          'padding': '20px',
-          'color': '#CCC',
-          'background-color': '#292D48',
-          'border': '1px solid #deca7e',
-          '-moz-box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
-          '-webkit-box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
-          'box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
-          'text-shadow': 'none',
-          '-webkit-border-radius': '5px',
-          '-moz-border-radius': '5px',
-          'border-radius': '5px'
-      }
-    });
+
+    console.log(tooltipElements.indexOf(element.id));
+    if (tooltipElements.indexOf(element.id) == -1) {
+      tooltipElements.push(element.id);
+      
+      $(element).tooltipsy({
+        css: {
+            'padding': '20px',
+            'color': '#CCC',
+            'background-color': '#292D48',
+            'border': '1px solid #deca7e',
+            '-moz-box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
+            '-webkit-box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
+            'box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
+            'text-shadow': 'none',
+            '-webkit-border-radius': '5px',
+            '-moz-border-radius': '5px',
+            'border-radius': '5px'
+        }
+      });
+    }
+
   }
 </script>
 
