@@ -226,6 +226,11 @@
       //document.getElementById("navbar1").style.display="block";
     }
     console.log("showHome", $scope.showHome);
+    
+    //jes home page stuff
+    $scope.eventName = 'Party';
+
+    //end
 
     /**
     *@summary will use ng-click to submit form, gets info from ng-models
