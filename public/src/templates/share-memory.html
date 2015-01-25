@@ -1,13 +1,13 @@
 <div class="check-in" ng-controller="SpecificEventCtrl">
   <div class="camera-container" style="background-color: #fafafa; width: 100%; height: 300px; text-align: center;">
     <div class="camera" style="width: 50%; height: 100%; margin: 0 auto;">
-      
-              
+
+
       <!-- if no getUserMedia -->
       <div ng-show="isActive" ng-init="isActive=hasMedia()">
         <script>
           var videoObj = { "video": true };
-          
+
           function takepic() {
             if (myStream) {
               context.drawImage(video, 0, 0, 250, 250);
@@ -17,11 +17,11 @@
               angular.element(document.getElementById('theFile')).scope().uploadPic(canvas.toDataURL('image/webp'))
             }
           }
-            
+
           var errBack = function(e) {
             console.log('Reeeejected!', e);
           };
-          
+
           // Put video listeners into place
           if(navigator.getUserMedia) { // Standard
                   navigator.getUserMedia(videoObj, function(stream) {
@@ -44,14 +44,14 @@
                   }, errBack);
           };
         </script>
-        
+
         <video id="video" width="" height="250" autoplay></video>
         <canvas id="canvas" width="" height="250"></canvas>
         <script>
-          var video =   document.getElementById("video"),  
+          var video =   document.getElementById("video"),
                         canvas = document.getElementById("canvas"),
                         context = canvas.getContext("2d")
-          var myStream = null; 
+          var myStream = null;
          </script>
       </div> <!-- /ng-show-->
     </div> <!-- /camera -->

@@ -33,9 +33,16 @@
       })
 
       $scope.startEvents = memoriesFactory.getMemoriesStart($scope.memory)
+
+      /**
+      *@summary creates array of hours + memories per hour
+      *@name $scope.startEvents a promise from firebase
+      *@name $scope.endEvents a promise from firebase
+      */
       $scope.startEvents.$loaded().then(function(data){
         $scope.startEvents = (data[0].timestamp);
         $scope.endEvents = memoriesFactory.getMemoriesEnd($scope.memory);
+
 
         $scope.endEvents.$loaded().then(function(dataE){
           $scope.endEvents  = (dataE[0].timestamp);
@@ -81,9 +88,6 @@
 
           }
 
-
-
-          //alert((24-15.5) * (numOfHrs/24));
         });
       });
 
@@ -170,7 +174,7 @@
 
       // this.event
       $scope.hasMedia= function() {
-        console.log('herer');
+        console.log('here');
         var breturn= (window.navigator.getUserMedia || window.navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia);
 
         if (breturn) {
@@ -268,14 +272,6 @@
 
     $scope.list = eventsFactory.getEvents();
 
-    console.log($scope.list);
-
-
-    //
-    var m = memoriesFactory.getMemories(eID);
-        m.$loaded().then(function(){
-      console.log('Event has  ' + m.length + " memories");
-    })
   }]);
 
   app.controller('IndexCtrl', ['$scope', '$location', 'eventsFactory','$route','$routeParams','guestFactory',
