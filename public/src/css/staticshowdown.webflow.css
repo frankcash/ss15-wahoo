@@ -301,7 +301,6 @@ p {
   font-family:'Varela Round', sans-serif;
   color: white;
 }
-.error-text {
 
 .timeline-header {
   width: 100%;
@@ -627,8 +626,11 @@ p {
 .made-by {
   margin-bottom: 14px;
   font-family:'Varela Round', sans-serif;
-  color: #2a2d48;
+  color: #fff;
   font-size: 16px;
+}
+.heart {
+  color: #f83830;
 }
 .ss2015 {
   -webkit-transition: opacity 1000ms ease;
