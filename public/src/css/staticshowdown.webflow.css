@@ -246,8 +246,6 @@ p {
   font-size: 24px;
   text-align: center;
 }
-
-
 .input:focus {
   border-bottom-color: #F3CF4E;
 }
@@ -661,7 +659,7 @@ p {
 }
 .events-list-link {
   margin-top: 31px;
-  padding-left: 158px;
+  margin-right: 20px;
 }
 html.w-mod-js *[data-ix="new-interaction"] {
   -webkit-transform: translate(0px, -1000px);

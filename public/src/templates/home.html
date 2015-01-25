@@ -1,11 +1,11 @@
-<div class="section hero">
+<div class="section hero" ng-controller='IndexCtrl'>
   	<div class="w-container" data-ix="hero-text">
       <h1 class="hero-heading" data-ix="hero-text">Create memories that last forever</h1>
       <div class="w-form form-wrapper">
         <form class="w-clearfix form-container" id="email-form" name="email-form" data-name="Email Form" data-ix="hero-text">
           <div class="form-text" data-ix="hero-text">Start with your event name</div>
-          <input class="w-input input" id="Event" type="text" placeholder="Party" name="Event" data-name="Event" required="required">
-          <input class="w-button submit-button" type="submit" value="Create Event" data-wait="Please wait...">
+          <input class="w-input input" id="Event" type="text" placeholder="Party" name="Event" value="{{eventName}}" data-name="Event" required="required">
+          <a href="#/create?eventType={{eventName}}"><input class="w-button submit-button" value="Create Event" data-wait="Please wait..."></a>
         </form>
         <div class="w-form-done success">
           <p>Thank you! Your submission has been received!</p>

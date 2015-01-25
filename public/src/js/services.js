@@ -8,7 +8,7 @@ angular.module('services', [])
             },
             addEvent: function(eName, oName, oEmail) {
                 var e = {eventName: eName, orgName: oName, OrgEmail:oEmail, eTime: (new Date()).getTime() };
-                $firebase(fr).$asArray().$add(e);
+                return $firebase(fr).$asArray().$add(e);
             },
             getEvent: function getEvent(id){
                 return $firebase(fr.child(id)).$asObject();
