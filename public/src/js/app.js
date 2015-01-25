@@ -92,7 +92,7 @@
       //console.log('share it NOW');
       if ( $scope.thePic) {
         memoriesFactory.addMemory($scope.thisEvent, $scope.thisGuestId, $scope.thePic,'image',$scope.msg ? $scope.msg : '', false);
-        $location.path('/memory/'+$scope.thisEvent + '/'+$scope.thisGuestId);
+        $location.path('/event/'+$scope.thisEvent);
       } else {
         alert('Missing picture');
       };
