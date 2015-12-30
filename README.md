@@ -2,6 +2,8 @@
 
 # Memoreez
 
+This project is not being actively maintained. 
+
 =============
 ## About
 Memoreez is an app created at the 2015 Static Showdown Hackathon on the weekend of January 24, 2015.
